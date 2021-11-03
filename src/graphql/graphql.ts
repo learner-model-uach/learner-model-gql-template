@@ -728,6 +728,15 @@ export type CurrentUserQuery = {
     | undefined;
 };
 
+export type ActionMutationVariables = Exact<{
+  data: ActionInput;
+}>;
+
+export type ActionMutation = {
+  __typename?: "Mutation";
+  action?: void | undefined | null | null | undefined;
+};
+
 export const CurrentUserDocument = {
   kind: "Document",
   definitions: [
@@ -785,11 +794,7 @@ export const CurrentUserDocument = {
               {
                 kind: "Argument",
                 name: { kind: "Name", value: "code" },
-                value: {
-                  kind: "StringValue",
-                  value: "Project Code",
-                  block: false,
-                },
+                value: { kind: "StringValue", value: "example", block: false },
               },
             ],
             selectionSet: {
@@ -806,3 +811,45 @@ export const CurrentUserDocument = {
     },
   ],
 } as unknown as DocumentNode<CurrentUserQuery, CurrentUserQueryVariables>;
+export const ActionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "Action" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ActionInput" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "action" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "data" },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ActionMutation, ActionMutationVariables>;

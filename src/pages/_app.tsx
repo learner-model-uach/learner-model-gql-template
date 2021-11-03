@@ -19,8 +19,8 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       >
         <CombinedRQGQLProvider client={queryClient} rqGQLClient={rqGQLClient}>
-          <SyncAuth />
           <ChakraProvider theme={theme}>
+            <SyncAuth />
             <ErrorToast />
             <MainLayout>
               <Component {...pageProps} />

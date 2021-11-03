@@ -1,11 +1,12 @@
 import { useAuth0, User as Auth0User } from "@auth0/auth0-react";
 import { Spinner } from "@chakra-ui/react";
 import Router from "next/router";
-import { FC, useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import { useGQLQuery } from "rq-gql";
 import { proxy, useSnapshot } from "valtio";
 import { CurrentUserQuery, gql } from "../graphql";
 import { rqGQLClient } from "../rqClient";
+import { useAction } from "../utils/action";
 
 export const AuthState = proxy<{
   auth0User: Auth0User | null;
@@ -47,7 +48,7 @@ export function SyncAuth() {
             tags
           }
         }
-        project(code: "Project Code") {
+        project(code: "example") {
           id
           code
           label
@@ -86,8 +87,24 @@ export function SyncAuth() {
     }
   }, [user]);
 
-  return null;
+  return <OnStart />;
 }
+
+const OnStart = memo(() => {
+  const { project } = useAuth();
+
+  const startAction = useAction({
+    verbName: "OpenTemplateApplication",
+  });
+
+  const projectId = project?.id;
+
+  useEffect(() => {
+    if (projectId) startAction();
+  }, [projectId, startAction]);
+
+  return null;
+});
 
 export const useAuth = () => useSnapshot(AuthState);
 
