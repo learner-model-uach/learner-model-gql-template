@@ -11,10 +11,14 @@ import type { ReactNode } from "react";
 export function MainLayout({ children }: { children: ReactNode }) {
   const { isOpen, toggle } = useMobileMenuState();
 
+  const mainContainerBackground = useColorModeValue("blue.800", "gray.800");
+
+  const contentContainerBackground = useColorModeValue("white", "gray.700");
+
   return (
     <Flex
       height="100vh"
-      bg={useColorModeValue("blue.800", "gray.800")}
+      bg={mainContainerBackground}
       overflow="hidden"
       sx={{ "--sidebar-width": "16rem" }}
     >
@@ -44,8 +48,7 @@ export function MainLayout({ children }: { children: ReactNode }) {
         transition="left 0.2s"
       >
         <Box
-          maxW="2560px"
-          bg={useColorModeValue("white", "gray.700")}
+          bg={contentContainerBackground}
           height="100%"
           pb="6"
           rounded={{ md: "lg" }}
@@ -57,19 +60,27 @@ export function MainLayout({ children }: { children: ReactNode }) {
               justify="space-between"
               align="center"
               px="10"
+              display={{ base: "block", md: "none" }}
             >
               <Flex align="center" minH="8">
                 <MobileMenuButton onClick={toggle} isOpen={isOpen} />
               </Flex>
-              <SearchInput />
+              {false && <SearchInput />}
             </Flex>
             <Flex
               overflowY="auto"
               direction="column"
               flex="1"
               overflow="auto"
-              px="10"
-              pt="8"
+              px={{
+                md: "10",
+              }}
+              pt={{
+                md: "8",
+              }}
+              maxW={{
+                md: "calc(97vw - var(--sidebar-width))",
+              }}
             >
               {children}
             </Flex>

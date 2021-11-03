@@ -23,15 +23,9 @@ export function SyncAuth() {
   const { user, getIdTokenClaims, isLoading } = useAuth0();
   const headersSnap = useSnapshot(rqGQLClient.headers);
 
-  useEffect(() => {
-    AuthState.isLoading = isLoading;
-  }, [isLoading]);
+  const hasAuthorizationToken = !!headersSnap.authorization;
 
-  useEffect(() => {
-    AuthState.auth0User = user || null;
-  }, [user]);
-
-  useGQLQuery(
+  const { isLoading: currentUserIsLoading } = useGQLQuery(
     gql(/* GraphQL */ `
       query currentUser {
         currentUser {
@@ -62,7 +56,7 @@ export function SyncAuth() {
     `),
     undefined,
     {
-      enabled: !!headersSnap.authorization,
+      enabled: hasAuthorizationToken,
       onSuccess(data) {
         AuthState.user = data.currentUser;
         AuthState.project = data.project;
@@ -74,7 +68,16 @@ export function SyncAuth() {
   );
 
   useEffect(() => {
+    AuthState.isLoading = currentUserIsLoading || isLoading;
+  }, [isLoading, currentUserIsLoading]);
+
+  useEffect(() => {
+    AuthState.auth0User = user || null;
+  }, [user]);
+
+  useEffect(() => {
     if (user) {
+      AuthState.isLoading = true;
       getIdTokenClaims().then((data) => {
         rqGQLClient.headers.authorization = `Bearer ${data.__raw}`;
 
@@ -101,7 +104,7 @@ export function withAuth<Props extends Record<string, unknown>>(
 
     if (user) return <Cmp {...props} />;
 
-    Router.replace("/");
+    typeof window !== "undefined" && Router.replace("/");
 
     return <Spinner />;
   };
