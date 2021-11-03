@@ -1,0 +1,545 @@
+type Action {
+  amount: Float
+  content: Content
+  createdAt: DateTime!
+  detail: String
+  extra: JSONObject
+  hintID: ID
+  id: IntID!
+  kcs: [KC!]!
+  result: Float
+  stepID: ID
+  timestamp: Timestamp!
+  topic: Topic
+  user: User
+  verb: ActionVerb!
+}
+
+input ActionInput {
+  amount: Float
+  contentID: ID
+  detail: String
+  extra: JSONObject
+  hintID: ID
+  kcsIDs: [ID!]
+  projectId: IntID!
+  result: Float
+  stepID: ID
+  timestamp: Timestamp!
+  topicID: ID
+  verbName: String!
+}
+
+type ActionVerb {
+  id: IntID!
+  name: String!
+}
+
+type ActionsConnection implements Connection {
+  nodes: [Action!]!
+  pageInfo: PageInfo!
+}
+
+type ActionsVerbsConnection implements Connection {
+  nodes: [ActionVerb!]!
+  pageInfo: PageInfo!
+}
+
+type AdminActionQueries {
+  allActions(
+    filters: AdminActionsFilter
+    orderBy: AdminActionsOrderBy
+    pagination: CursorConnectionArgs!
+  ): ActionsConnection!
+  allActionsVerbs(pagination: CursorConnectionArgs!): ActionsVerbsConnection!
+}
+
+input AdminActionsFilter {
+  content: [IntID!]
+  endDate: DateTime
+  kcs: [IntID!]
+  projects: [IntID!]
+  startDate: DateTime
+  topics: [IntID!]
+  users: [IntID!]
+  verbNames: [String!]
+}
+
+input AdminActionsOrderBy {
+  id: ORDER_BY = DESC
+}
+
+input AdminContentFilter {
+  projects: [IntID!]
+  tags: [String!]
+}
+
+type AdminContentMutations {
+  createContent(data: CreateContent!): Content!
+  updateContent(data: UpdateContent!): Content!
+}
+
+type AdminContentQueries {
+  allContent(
+    filters: AdminContentFilter
+    pagination: CursorConnectionArgs!
+  ): ContentConnection!
+}
+
+type AdminDomainMutations {
+  createDomain(input: CreateDomain!): Domain!
+  createKC(data: CreateKCInput!): KC!
+  createTopic(input: CreateTopic!): Topic!
+  updateDomain(input: UpdateDomain!): Domain!
+  updateKC(data: UpdateKCInput!): KC!
+  updateTopic(input: UpdateTopic!): Topic!
+}
+
+type AdminDomainQueries {
+  allDomains(
+    filters: AdminDomainsFilter
+    pagination: CursorConnectionArgs!
+  ): DomainsConnection!
+  allKCs(
+    filters: AdminKCsFilter
+    pagination: CursorConnectionArgs!
+  ): KCsConnection!
+  allTopics(
+    filters: AdminTopicsFilter
+    pagination: CursorConnectionArgs!
+  ): TopicsConnection!
+}
+
+input AdminDomainsFilter {
+  projects: [IntID!]
+}
+
+input AdminGroupsFilter {
+  tags: [String!]
+}
+
+input AdminKCsFilter {
+  domains: [IntID!]
+  projects: [IntID!]
+}
+
+type AdminProjectsMutations {
+  createProject(data: CreateProject!): Project!
+  updateProject(data: UpdateProject!): Project!
+}
+
+type AdminProjectsQueries {
+  allProjects(pagination: CursorConnectionArgs!): ProjectsConnection!
+}
+
+input AdminTopicsFilter {
+  projects: [IntID!]
+}
+
+type AdminUserMutations {
+  createGroup(data: CreateGroupInput!): Group!
+  setProjectsToUsers(projectIds: [IntID!]!, userIds: [IntID!]!): [User!]!
+  setUserGroups(groupIds: [IntID!]!, usersEmails: [EmailAddress!]!): [Group!]!
+  updateGroup(data: UpdateGroupInput!): Group!
+  updateUser(data: UpdateUserInput!): User!
+
+  """
+  Upsert specified users with specified project
+  """
+  upsertUsersWithProjects(
+    emails: [EmailAddress!]!
+    projectsIds: [IntID!]!
+  ): [User!]!
+}
+
+type AdminUserQueries {
+  allGroups(
+    filters: AdminGroupsFilter
+    pagination: CursorConnectionArgs!
+  ): GroupsConnection!
+  allUsers(
+    filters: AdminUsersFilter
+    pagination: CursorConnectionArgs!
+  ): UsersConnection!
+}
+
+input AdminUsersFilter {
+  tags: [String!]
+}
+
+interface Connection {
+  pageInfo: PageInfo!
+}
+
+type Content {
+  binaryBase64: String
+  binaryFilename: String
+  code: String!
+  createdAt: DateTime!
+  description: String!
+  id: IntID!
+  json: JSONObject
+  kcs: [KC!]!
+  label: String!
+  project: Project!
+  sortIndex: Int
+  tags: [String!]!
+  topics: [Topic!]!
+  updatedAt: DateTime!
+  url: String
+}
+
+type ContentConnection implements Connection {
+  nodes: [Content!]!
+  pageInfo: PageInfo!
+}
+
+input CreateContent {
+  binaryBase64: String
+  binaryFilename: String
+  code: String!
+  description: String!
+  json: JSONObject
+  kcs: [IntID!]!
+  label: String!
+  projectId: IntID!
+  tags: [String!]!
+  topics: [IntID!]!
+  url: URL
+}
+
+input CreateDomain {
+  code: String!
+  label: String!
+  projectsIds: [IntID!]!
+}
+
+input CreateGroupInput {
+  code: String!
+  flags: GroupFlagsInput
+  label: String!
+  projectIds: [IntID!]!
+  tags: [String!]!
+}
+
+input CreateKCInput {
+  code: String!
+  domainId: IntID!
+  label: String!
+}
+
+input CreateProject {
+  code: String!
+  domains: [IntID!]!
+  label: String!
+}
+
+input CreateTopic {
+  code: String!
+  contentIds: [IntID!]!
+  label: String!
+  parentTopicId: IntID
+  projectId: IntID!
+  sortIndex: Int
+}
+
+input CursorConnectionArgs {
+  after: IntID
+  before: IntID
+  first: NonNegativeInt
+  last: NonNegativeInt
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type Domain {
+  code: String!
+  createdAt: DateTime!
+  id: IntID!
+  kcs: [KC!]!
+  label: String!
+  projects: [Project!]!
+  updatedAt: DateTime!
+}
+
+type DomainsConnection implements Connection {
+  nodes: [Domain!]!
+  pageInfo: PageInfo!
+}
+
+"""
+A field whose value conforms to the standard internet email address format as specified in RFC822: https://www.w3.org/Protocols/rfc822/.
+"""
+scalar EmailAddress
+
+type Group {
+  code: String!
+  createdAt: DateTime!
+  flags: GroupFlags!
+  id: IntID!
+  label: String!
+  projects: [Project!]!
+  projectsIds: [IntID!]!
+  tags: [String!]!
+  updatedAt: DateTime!
+  users: [User!]!
+}
+
+type GroupFlags {
+  createdAt: DateTime!
+  id: IntID!
+  readProjectActions: Boolean!
+  updatedAt: DateTime!
+}
+
+input GroupFlagsInput {
+  readProjectActions: Boolean!
+}
+
+type GroupsConnection implements Connection {
+  nodes: [Group!]!
+  pageInfo: PageInfo!
+}
+
+"""
+ID that parses as non-negative integer, serializes to string, and can be passed as string or number
+"""
+scalar IntID
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type KC {
+  code: String!
+  createdAt: DateTime!
+  domain: Domain!
+  id: IntID!
+  label: String!
+  topics: [Topic!]!
+  updatedAt: DateTime!
+}
+
+type KCsConnection implements Connection {
+  nodes: [KC!]!
+  pageInfo: PageInfo!
+}
+
+type Mutation {
+  action(data: ActionInput!): Void
+  adminContent: AdminContentMutations!
+  adminDomain: AdminDomainMutations!
+  adminProjects: AdminProjectsMutations!
+  adminUsers: AdminUserMutations!
+  hello: String!
+}
+
+interface Node {
+  id: IntID!
+}
+
+"""
+Integers that will have a value of 0 or more.
+"""
+scalar NonNegativeInt
+
+enum ORDER_BY {
+  ASC
+  DESC
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Project {
+  actions(
+    filters: ProjectActionsFilter
+    pagination: CursorConnectionArgs!
+  ): ActionsConnection!
+  code: String!
+  createdAt: DateTime!
+  domains: [Domain!]!
+  id: IntID!
+  label: String!
+  updatedAt: DateTime!
+}
+
+input ProjectActionsFilter {
+  content: [IntID!]
+  endDate: DateTime
+  kcs: [IntID!]
+  startDate: DateTime
+  topics: [IntID!]
+  users: [IntID!]
+  verbNames: [String!]
+}
+
+type ProjectsConnection implements Connection {
+  nodes: [Project!]!
+  pageInfo: PageInfo!
+}
+
+type Query {
+  adminActions: AdminActionQueries!
+  adminContent: AdminContentQueries!
+  adminDomain: AdminDomainQueries!
+
+  """
+  [ADMIN] Project related administration queries
+  """
+  adminProjects: AdminProjectsQueries!
+  adminUsers: AdminUserQueries!
+  content(ids: [IntID!]!): [Content!]!
+  currentUser: User
+  domains(ids: [IntID!]!): [Domain!]!
+  groups(ids: [IntID!]!): [Group!]!
+  hello: String!
+  hello2: String!
+  kcs(ids: [IntID!]!): [KC!]!
+
+  """
+  Get specified project by either "id" or "code".
+
+  - If user is not authenticated it will always return NULL.
+  - If authenticated user has no permissions on the specified project it returns NULL.
+  """
+  project(code: String, id: IntID): Project
+  projects(ids: [IntID!]!): [Project!]!
+  topics(ids: [IntID!]!): [Topic!]!
+  users(ids: [IntID!]!): [User!]!
+}
+
+type Subscription {
+  hello: String!
+}
+
+"""
+The javascript `Date` as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+type Topic {
+  childrens: [Topic!]!
+  code: String!
+  content: [Content!]!
+  createdAt: DateTime!
+  id: IntID!
+  kcs: [KC!]!
+  label: String!
+  parent: Topic
+  project: Project!
+  sortIndex: Int
+  updatedAt: DateTime!
+}
+
+type TopicsConnection implements Connection {
+  nodes: [Topic!]!
+  pageInfo: PageInfo!
+}
+
+"""
+A field whose value conforms to the standard URL format as specified in RFC3986: https://www.ietf.org/rfc/rfc3986.txt.
+"""
+scalar URL
+
+input UpdateContent {
+  binaryBase64: String
+  binaryFilename: String
+  code: String!
+  description: String!
+  id: IntID!
+  json: JSONObject
+  kcs: [IntID!]!
+  label: String!
+  projectId: IntID!
+  tags: [String!]!
+  topics: [IntID!]!
+  url: URL
+}
+
+input UpdateDomain {
+  code: String!
+  id: IntID!
+  label: String!
+}
+
+input UpdateGroupInput {
+  code: String!
+  flags: GroupFlagsInput
+  id: IntID!
+  label: String!
+  projectIds: [IntID!]!
+  tags: [String!]!
+}
+
+input UpdateKCInput {
+  code: String!
+  id: IntID!
+  label: String!
+}
+
+input UpdateProject {
+  code: String!
+  domains: [IntID!]!
+  id: IntID!
+  label: String!
+}
+
+input UpdateTopic {
+  code: String!
+  contentIds: [IntID!]!
+  id: IntID!
+  label: String!
+  parentTopicId: IntID
+  sortIndex: Int
+}
+
+input UpdateUserInput {
+  id: IntID!
+  locked: Boolean!
+  name: String
+  projectIds: [IntID!]!
+  role: UserRole!
+  tags: [String!]!
+}
+
+type User {
+  active: Boolean!
+  createdAt: DateTime!
+  email: String!
+  enabled: Boolean!
+  groups: [Group!]!
+  id: IntID!
+  lastOnline: DateTime
+  locked: Boolean!
+  name: String
+  picture: String
+  projects: [Project!]!
+  projectsIds: [IntID!]!
+  role: UserRole!
+  tags: [String!]!
+  updatedAt: DateTime!
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+type UsersConnection implements Connection {
+  nodes: [User!]!
+  pageInfo: PageInfo!
+}
+
+"""
+Represents NULL values
+"""
+scalar Void

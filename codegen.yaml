@@ -1,0 +1,29 @@
+overwrite: true
+schema: "https://learner-model.pablosz.dev/graphql"
+documents:
+  - "src/**/*.tsx"
+  - "src/**/*.ts"
+generates:
+  src/graphql/:
+    preset: rq-gql/preset
+    config:
+      useTypeImports: true
+      enumsAsConst: true
+      scalars:
+        DateTime: "string"
+        JSONObject: "Record<string,unknown>"
+        Timestamp: "number"
+        URL: "string"
+        NonNegativeInt: "number"
+        NonEmptyString: "string"
+        EmailAddress: "string"
+        Void: "void | undefined | null"
+        IntID: "string"
+        Latitude: "number"
+        Longitude: "number"
+  schema.graphql:
+    plugins:
+      - schema-ast
+hooks:
+  afterAllFileWrite:
+    - prettier --write

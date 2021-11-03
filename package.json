@@ -1,0 +1,44 @@
+{
+  "name": "learner-model-gql-template",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "concurrently -r next pnpm:gql:watch pnpm:open:browser",
+    "gql": "graphql-codegen --config codegen.yaml",
+    "gql:watch": "graphql-codegen --config codegen.yaml --watch",
+    "open:browser": "wait-on -s 1 http://localhost:3000 && open-cli http://localhost:3000",
+    "pretty": "prettier --write \"**/*.{ts,tsx,json}\"",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@auth0/auth0-react": "^1.8.0",
+    "@chakra-ui/react": "^1.6.10",
+    "@chakra-ui/system": "^1.7.4",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@graphql-codegen/cli": "^2.2.2",
+    "@graphql-codegen/core": "^2.3.0",
+    "@graphql-typed-document-node/core": "^3.1.0",
+    "framer-motion": "^5.0.2",
+    "graphql": "^16.0.1",
+    "next": "^12.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-query": "^3.31.0",
+    "rq-gql": "^0.3.1",
+    "serialize-error": "^8.1.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/schema-ast": "^2.3.0",
+    "@types/concurrently": "^6.3.0",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "concurrently": "^6.3.0",
+    "open-cli": "^7.0.1",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4",
+    "wait-on": "^6.0.0"
+  }
+}
