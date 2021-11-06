@@ -22,7 +22,7 @@ specifiers:
   react: ^17.0.2
   react-dom: ^17.0.2
   react-icons: ^4.3.1
-  react-query: ^3.31.0
+  react-query: ^3.32.0
   rq-gql: ^0.3.1
   serialize-error: ^8.1.0
   typescript: ^4.4.4
@@ -43,8 +43,8 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
-  react-query: 3.31.0_react-dom@17.0.2+react@17.0.2
-  rq-gql: 0.3.1_cdfcc4d959b905d82d897a77bf9dac9e
+  react-query: 3.32.0_react-dom@17.0.2+react@17.0.2
+  rq-gql: 0.3.1_10bc766a775e774f2dc5b6e25fd8993d
   serialize-error: 8.1.0
 
 devDependencies:
@@ -617,7 +617,7 @@ packages:
     resolution: {integrity: sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.4
+      regenerator-runtime: 0.13.9
     dev: false
 
   /@babel/runtime/7.16.0:
@@ -5618,8 +5618,8 @@ packages:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: false
 
-  /react-query/3.31.0_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-6NiXgjdXBKGA9ge04NI21uqTCIpH6qzR8AGGom/nR/emaGc//D9KM6C6+AEy8zLYl4RYjvd/XhA3lWME5kGMiw==}
+  /react-query/3.32.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-LAPAc3n7rBA26dZJ6OQiELtjOh5bp7kGEu+d6sOBr9lHtrpXJKPaRzHzPEF4lpmeGBT9D8iWRaJLbu1LNH5iRQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0
       react-dom: '*'
@@ -5901,7 +5901,7 @@ packages:
       inherits: 2.0.4
     dev: false
 
-  /rq-gql/0.3.1_cdfcc4d959b905d82d897a77bf9dac9e:
+  /rq-gql/0.3.1_10bc766a775e774f2dc5b6e25fd8993d:
     resolution: {integrity: sha512-K4MKVJXwt+nYLW3K2enCG9wdwbg8Timmyex+2p+Yjop53yeZJbUMe94UE/mnCyg8EmpW5OAt64HJICto2EZHtg==}
     peerDependencies:
       '@graphql-typed-document-node/core': ^3.1.0
@@ -5919,7 +5919,7 @@ packages:
       '@graphql-typed-document-node/core': 3.1.0_graphql@16.0.1
       commander: 8.3.0
       graphql: 16.0.1
-      react-query: 3.31.0_react-dom@17.0.2+react@17.0.2
+      react-query: 3.32.0_react-dom@17.0.2+react@17.0.2
       valtio: 1.2.5_react@17.0.2
     transitivePeerDependencies:
       - '@babel/helper-module-imports'
