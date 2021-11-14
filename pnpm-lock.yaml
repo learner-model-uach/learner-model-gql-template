@@ -10,7 +10,7 @@ specifiers:
   '@graphql-codegen/core': ^2.3.0
   '@graphql-codegen/schema-ast': ^2.4.0
   '@graphql-typed-document-node/core': ^3.1.0
-  '@types/concurrently': ^6.3.0
+  '@types/concurrently': ^6.4.0
   '@types/react': ^17.0.34
   '@types/react-dom': ^17.0.11
   concurrently: ^6.4.0
@@ -49,7 +49,7 @@ dependencies:
 
 devDependencies:
   '@graphql-codegen/schema-ast': 2.4.0_graphql@16.0.1
-  '@types/concurrently': 6.3.0
+  '@types/concurrently': 6.4.0
   '@types/react': 17.0.34
   '@types/react-dom': 17.0.11
   concurrently: 6.4.0
@@ -2367,8 +2367,8 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
-  /@types/concurrently/6.3.0:
-    resolution: {integrity: sha512-R0M9Dt330vtNgNlBYQYniDfI3I3Sk6cu27M1EKS5VFoio2rZqTMuOBGe9DX+ISM0B6y+RGrgtpWCv2k2VBLtbQ==}
+  /@types/concurrently/6.4.0:
+    resolution: {integrity: sha512-CYU1eyFHsIa2IZIsb8gfUOdiewfnZcyM2Hg1Zaq95xnmB0Ix/bTRM8SttqZ2Cjy6JGPZLttHjZewVsDg1yvnJg==}
     dependencies:
       '@types/node': 16.11.6
       chalk: 4.1.2
