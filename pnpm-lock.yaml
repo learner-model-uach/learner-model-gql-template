@@ -9,7 +9,7 @@ specifiers:
   '@graphql-codegen/cli': ^2.3.0
   '@graphql-codegen/core': ^2.3.0
   '@graphql-codegen/schema-ast': ^2.4.0
-  '@graphql-typed-document-node/core': ^3.1.0
+  '@graphql-typed-document-node/core': ^3.1.1
   '@types/concurrently': ^6.4.0
   '@types/react': ^17.0.35
   '@types/react-dom': ^17.0.11
@@ -36,7 +36,7 @@ dependencies:
   '@emotion/styled': 11.6.0_0defef186e606f744d8b5a7a5a1334ae
   '@graphql-codegen/cli': 2.3.0_graphql@16.0.1+typescript@4.4.4
   '@graphql-codegen/core': 2.3.0_graphql@16.0.1
-  '@graphql-typed-document-node/core': 3.1.0_graphql@16.0.1
+  '@graphql-typed-document-node/core': 3.1.1_graphql@16.0.1
   framer-motion: 5.3.0_react-dom@17.0.2+react@17.0.2
   graphql: 16.0.1
   next: 12.0.4_react-dom@17.0.2+react@17.0.2
@@ -44,7 +44,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
   react-query: 3.32.3_react-dom@17.0.2+react@17.0.2
-  rq-gql: 0.3.1_46013979660c6e2d66bbf6e8ab8cff07
+  rq-gql: 0.3.1_ba1b7f90749b0096cde3a8f5b971713f
   serialize-error: 9.0.0
 
 devDependencies:
@@ -2065,10 +2065,10 @@ packages:
       value-or-promise: 1.0.11
     dev: false
 
-  /@graphql-typed-document-node/core/3.1.0_graphql@16.0.1:
-    resolution: {integrity: sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==}
+  /@graphql-typed-document-node/core/3.1.1_graphql@16.0.1:
+    resolution: {integrity: sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
     dependencies:
       graphql: 16.0.1
     dev: false
@@ -5901,7 +5901,7 @@ packages:
       inherits: 2.0.4
     dev: false
 
-  /rq-gql/0.3.1_46013979660c6e2d66bbf6e8ab8cff07:
+  /rq-gql/0.3.1_ba1b7f90749b0096cde3a8f5b971713f:
     resolution: {integrity: sha512-K4MKVJXwt+nYLW3K2enCG9wdwbg8Timmyex+2p+Yjop53yeZJbUMe94UE/mnCyg8EmpW5OAt64HJICto2EZHtg==}
     peerDependencies:
       '@graphql-typed-document-node/core': ^3.1.0
@@ -5916,7 +5916,7 @@ packages:
       '@graphql-codegen/typescript-operations': 2.2.0_graphql@16.0.1
       '@graphql-codegen/visitor-plugin-common': 2.5.0_graphql@16.0.1
       '@graphql-tools/utils': 8.5.2_graphql@16.0.1
-      '@graphql-typed-document-node/core': 3.1.0_graphql@16.0.1
+      '@graphql-typed-document-node/core': 3.1.1_graphql@16.0.1
       commander: 8.3.0
       graphql: 16.0.1
       react-query: 3.32.3_react-dom@17.0.2+react@17.0.2
