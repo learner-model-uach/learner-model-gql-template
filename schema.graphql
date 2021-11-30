@@ -1,150 +1,565 @@
+"""
+User-emitted actions related to system, data mainly used for logging and modeling purposes
+"""
 type Action {
+  """
+  Arbitrary numeric amount
+  """
   amount: Float
+
+  """
+  Related content
+  """
   content: Content
+
+  """
+  Timestamp of the action, set by the database on row creation
+  """
   createdAt: DateTime!
+
+  """
+  Arbitrary string content detail
+  """
   detail: String
+
+  """
+  Arbitrary JSON object data
+  """
   extra: JSONObject
+
+  """
+  Arbitrary hint identifier
+  """
   hintID: ID
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Related KCs
+  """
   kcs: [KC!]!
+
+  """
+  Arbitrary numeric result
+  """
   result: Float
+
+  """
+  Arbitrary step identifier
+  """
   stepID: ID
+
+  """
+  Timestamp of the action, set by the action emitter
+  """
   timestamp: Timestamp!
+
+  """
+  Related topic
+  """
   topic: Topic
+
+  """
+  User that emitted the action
+  """
   user: User
+
+  """
+  Type of action
+  """
   verb: ActionVerb!
 }
 
+"""
+Input of action report
+"""
 input ActionInput {
+  """
+  Arbitrary numeric amount
+  """
   amount: Float
+
+  """
+  Content identifier
+
+  If it's numeric, it points to the "id" property of the content, otherwise, it points to the "code" property.
+
+  Validation of content presence/authorization is made before confirming action
+  """
   contentID: ID
+
+  """
+  Arbitrary string content detail
+  """
   detail: String
+
+  """
+  Arbitrary JSON object data
+  """
   extra: JSONObject
+
+  """
+  Arbitrary hint identifier
+  """
   hintID: ID
+
+  """
+  KCs identifiers
+
+  If it's numeric, it points to the "id" property of the content, otherwise, it points to the "code" property.
+
+  Validation of kc presence/authorization is made before confirming action
+  """
   kcsIDs: [ID!]
+
+  """
+  Identifier of project related to action.
+
+  It's verified based on authenticated user, and attached validated ids are validated against the specified project
+  """
   projectId: IntID!
+
+  """
+  Arbitrary numeric result
+  """
   result: Float
+
+  """
+  Arbitrary step identifier
+  """
   stepID: ID
+
+  """
+  Timestamp of the action.
+
+  Format in number of milliseconds elapsed since January 1, 1970 00:00:00 UTC
+  """
   timestamp: Timestamp!
+
+  """
+  Topic identifier
+
+  If it's numeric, it points to the "id" property of the content, otherwise, it points to the "code" property.
+
+  Validation of topic presence/authorization is made before confirming action
+  """
   topicID: ID
+
+  """
+  Type of action, if specified verb doesn't exist, it's automatically created
+  """
   verbName: String!
 }
 
+"""
+Action Verb
+
+Main action categorization system
+"""
 type ActionVerb {
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Name of the verb
+  """
   name: String!
 }
 
+"""
+Paginated Actions
+"""
 type ActionsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [Action!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
+"""
+Paginated Actions Verbs
+"""
 type ActionsVerbsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [ActionVerb!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
+"""
+Admin Action-Related Queries
+"""
 type AdminActionQueries {
+  """
+  [ADMIN] Get all the actions currently in the system
+
+  Pagination parameters are mandatory, but filters and orderBy are optional, and therefore the search can be customized.
+  """
   allActions(
     filters: AdminActionsFilter
     orderBy: AdminActionsOrderBy
     pagination: CursorConnectionArgs!
   ): ActionsConnection!
+
+  """
+  [ADMIN] Get all the action's verbs currently in the system
+  """
   allActionsVerbs(pagination: CursorConnectionArgs!): ActionsVerbsConnection!
 }
 
+"""
+Filter all actions of admin query
+"""
 input AdminActionsFilter {
+  """
+  Filter by the specified content
+
+  If action's content matches any of the specified content, the action is included
+  """
   content: [IntID!]
+
+  """
+  Filter by the specified end date
+
+  If action's timestamp is before the specified date, the action is included
+  """
   endDate: DateTime
+
+  """
+  Filter by the specified KCs
+
+  If any of the action's KCs matches any of the specified KCs, the action is included
+  """
   kcs: [IntID!]
+
+  """
+  Filter by the specified projects
+
+  If action's project matches any of the specified projects, the action is included
+  """
   projects: [IntID!]
+
+  """
+  Filter by the specified starting date
+
+  If action's timestamp is after the specified date, the action is included
+  """
   startDate: DateTime
+
+  """
+  Filter by the specified topics
+
+  If action's topic matches any of the specified topics, the action is included
+  """
   topics: [IntID!]
+
+  """
+  Filter by the specified users
+
+  If action's user matches any of the specified users, the action is included
+  """
   users: [IntID!]
+
+  """
+  Filter by the specified verbs
+
+  If action's verb matches any of the specified verbs, the action is included
+  """
   verbNames: [String!]
 }
 
+"""
+Order Admin Actions
+"""
 input AdminActionsOrderBy {
+  """
+  Order the actions ascendingly or descendingly
+
+  Following the cursor pagination's nature, ordering by "id" tends to follow the action creation date, but it can't be guaranteed
+
+  By default the actions are ordered descendingly, showing the newer actions first
+  """
   id: ORDER_BY = DESC
 }
 
+"""
+Filter all content of admin query
+"""
 input AdminContentFilter {
+  """
+  Filter by the specified projects
+
+  If the content's project matches any of the specified projects, the content is included
+  """
   projects: [IntID!]
+
+  """
+  Filter by the specified tags
+
+  If any of the content's tags matches any of the specified tags, the content is included
+  """
   tags: [String!]
 }
 
+"""
+[ADMIN] Admin related content mutations, only authenticated users with the role "ADMIN" can access
+"""
 type AdminContentMutations {
+  """
+  [ADMIN] Create a new content entity
+  """
   createContent(data: CreateContent!): Content!
+
+  """
+  [ADMIN] Update an existent content entity
+  """
   updateContent(data: UpdateContent!): Content!
 }
 
+"""
+Admin Content-Related Queries
+"""
 type AdminContentQueries {
+  """
+  [ADMIN] Get all the content currently in the system
+
+  Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
+  """
   allContent(
     filters: AdminContentFilter
     pagination: CursorConnectionArgs!
   ): ContentConnection!
 }
 
+"""
+Admin Domain-Related Queries
+"""
 type AdminDomainMutations {
+  """
+  [ADMIN] Create a new domain entity
+  """
   createDomain(input: CreateDomain!): Domain!
+
+  """
+  [ADMIN] Create a new KC entity
+  """
   createKC(data: CreateKCInput!): KC!
+
+  """
+  [ADMIN] Create a new topic entity
+  """
   createTopic(input: CreateTopic!): Topic!
+
+  """
+  [ADMIN] Update an existent domain entity
+  """
   updateDomain(input: UpdateDomain!): Domain!
+
+  """
+  [ADMIN] Update an existent KC entity
+  """
   updateKC(data: UpdateKCInput!): KC!
+
+  """
+  [ADMIN] Update an existent topic entity
+  """
   updateTopic(input: UpdateTopic!): Topic!
 }
 
+"""
+Admin Domain-Related Queries
+"""
 type AdminDomainQueries {
+  """
+  [ADMIN] Get all the domains currently in the system
+
+  Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
+  """
   allDomains(
     filters: AdminDomainsFilter
     pagination: CursorConnectionArgs!
   ): DomainsConnection!
+
+  """
+  [ADMIN] Get all the KCs currently in the system
+
+  Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
+  """
   allKCs(
     filters: AdminKCsFilter
     pagination: CursorConnectionArgs!
   ): KCsConnection!
+
+  """
+  [ADMIN] Get all the topics currently in the system
+
+  Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
+  """
   allTopics(
     filters: AdminTopicsFilter
     pagination: CursorConnectionArgs!
   ): TopicsConnection!
 }
 
+"""
+Filter all domains of admin query
+"""
 input AdminDomainsFilter {
+  """
+  Filter by the specified projects
+
+  If the domain's project matches any of the specified projects, the domain is included
+  """
   projects: [IntID!]
 }
 
+"""
+Filter all groups of admin query
+"""
 input AdminGroupsFilter {
+  """
+  Tags associated with the group
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]
 }
 
+"""
+Filter all KCs of admin query
+"""
 input AdminKCsFilter {
+  """
+  Filter by the specified projects
+
+  If the KC's domain matches any of the specified projects, the KC is included
+  """
   domains: [IntID!]
+
+  """
+  Filter by the specified projects
+
+  If the KC's project matches any of the specified projects, the KC is included
+  """
   projects: [IntID!]
+
+  """
+  Filter by the specified topics
+
+  If any of the KC's topics matches any of the specified topics, the KC is included
+  """
+  topics: [IntID!]
 }
 
+"""
+Admin Project-Related Mutations
+"""
 type AdminProjectsMutations {
+  """
+  [ADMIN] Create a new project entity
+  """
   createProject(data: CreateProject!): Project!
+
+  """
+  [ADMIN] Update an existent project entity
+  """
   updateProject(data: UpdateProject!): Project!
 }
 
+"""
+Admin Project-Related Queries
+"""
 type AdminProjectsQueries {
+  """
+  [ADMIN] Get all the projects currently in the system
+  """
   allProjects(pagination: CursorConnectionArgs!): ProjectsConnection!
 }
 
+"""
+Admin State-Related Queries
+"""
+type AdminStateQueries {
+  """
+  [ADMIN] Get all the model states creators currently in the system
+  """
+  allModelStateCreators(
+    pagination: CursorConnectionArgs!
+  ): ModelStateCreatorConnection!
+
+  """
+  [ADMIN] Get all the model statestypes currently in the system
+  """
+  allModelStateTypes(
+    pagination: CursorConnectionArgs!
+  ): ModelStateTypeConnection!
+
+  """
+  [ADMIN] Get all the model states currently in the system
+
+  Pagination parameters are mandatory, but filters and orderBy are optional, and therefore the search can be customized.
+  """
+  allModelStates(input: ModelStateConnectionInput!): ModelStateConnection!
+}
+
+"""
+Filter all topics of admin query
+"""
 input AdminTopicsFilter {
+  """
+  Filter by the specified projects
+
+  If the topic's project matches any of the specified projects, the topic is included
+  """
   projects: [IntID!]
 }
 
+"""
+Admin User-Related Queries
+"""
 type AdminUserMutations {
+  """
+  [ADMIN] Create a new group entity
+  """
   createGroup(data: CreateGroupInput!): Group!
+
+  """
+  Set the projects of the specified users
+  """
   setProjectsToUsers(projectIds: [IntID!]!, userIds: [IntID!]!): [User!]!
+
+  """
+  [ADMIN] Set the users (by email) associated with the groups
+  """
   setUserGroups(groupIds: [IntID!]!, usersEmails: [EmailAddress!]!): [Group!]!
+
+  """
+  [ADMIN] Update an existent group entity
+  """
   updateGroup(data: UpdateGroupInput!): Group!
+
+  """
+  [ADMIN] Update an existent user entity
+  """
   updateUser(data: UpdateUserInput!): User!
 
   """
-  Upsert specified users with specified project
+  Upsert specified users with specified projects
   """
   upsertUsersWithProjects(
     emails: [EmailAddress!]!
@@ -152,101 +567,394 @@ type AdminUserMutations {
   ): [User!]!
 }
 
+"""
+Admin User-Related Queries
+"""
 type AdminUserQueries {
+  """
+  [ADMIN] Get all the groups currently in the system
+
+  Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
+  """
   allGroups(
     filters: AdminGroupsFilter
     pagination: CursorConnectionArgs!
   ): GroupsConnection!
+
+  """
+  [ADMIN] Get all the users currently in the system
+
+  Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
+  """
   allUsers(
     filters: AdminUsersFilter
     pagination: CursorConnectionArgs!
   ): UsersConnection!
 }
 
+"""
+Filter all users of admin query
+"""
 input AdminUsersFilter {
+  """
+  Filter by the specified tags
+
+  If any of the user's tags matches any of the specified tags, the user is included
+  """
   tags: [String!]
 }
 
+"""
+Pagination Interface
+"""
 interface Connection {
+  """
+  Pagination information
+  """
   pageInfo: PageInfo!
 }
 
+"""
+Content entity
+"""
 type Content {
+  """
+  Binary content encoded in base64
+
+  If present, it's guaranteed to be present alongisde binaryFilename
+  """
   binaryBase64: String
+
+  """
+  Binary content filename
+
+  If present, it's guaranteed to be present alongisde binaryBase64
+
+  It's required and guaranteed to contain an extension where the mimetype can be inferred
+  """
   binaryFilename: String
+
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Arbitrary content description
+  """
   description: String!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Arbitrary JSON object data
+  """
   json: JSONObject
+
+  """
+  KCs associated with the content
+  """
   kcs: [KC!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Project associated with the content
+  """
   project: Project!
+
+  """
+  Parameter that can be used to sort a list of content
+  """
   sortIndex: Int
+
+  """
+  Tags associated with the content
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
+
+  """
+  Topics associated with the content
+  """
   topics: [Topic!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
+
+  """
+  External URL
+  """
   url: String
 }
 
+"""
+Paginated Content
+"""
 type ContentConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [Content!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
+"""
+Content creation input data
+"""
 input CreateContent {
+  """
+  Binary content encoded in base64
+
+  If present, binaryFilename has to be specified
+  """
   binaryBase64: String
+
+  """
+  Binary content filename
+
+  If present, it's required to contain an extension where the mimetype can be inferred
+  """
   binaryFilename: String
+
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Arbitrary content description
+  """
   description: String!
+
+  """
+  Arbitrary JSON object data
+  """
   json: JSONObject
+
+  """
+  KCs associated with the content
+  """
   kcs: [IntID!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Project associated with new content
+  """
   projectId: IntID!
+
+  """
+  Tags associated with the content
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
+
+  """
+  Topics associated with the content
+  """
   topics: [IntID!]!
+
+  """
+  External URL
+  """
   url: URL
 }
 
+"""
+Domain creation input data
+"""
 input CreateDomain {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Projects associated with domain
+  """
   projectsIds: [IntID!]!
 }
 
+"""
+Group creation input data
+"""
 input CreateGroupInput {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Permissions flags
+  """
   flags: GroupFlagsInput
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Projects associated with the group
+  """
   projectIds: [IntID!]!
+
+  """
+  Tags associated with the group
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
 }
 
+"""
+KC creation input data
+"""
 input CreateKCInput {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Domain associated with KC
+  """
   domainId: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
 }
 
+"""
+Project creation input data
+"""
 input CreateProject {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Domains associated with project
+  """
   domains: [IntID!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
 }
 
+"""
+Topic creation input data
+"""
 input CreateTopic {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Content associated with topic
+  """
   contentIds: [IntID!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Parent topic
+
+  Used to set the hierarchy of topics
+  """
   parentTopicId: IntID
+
+  """
+  Project associated with topic
+  """
   projectId: IntID!
+
+  """
+  Parameter that can be used to sort a list of topics
+  """
   sortIndex: Int
+
+  """
+  Tags associated with the topic
+
+  Tags can be used to categorize or filter
+  """
+  tags: [String!]!
 }
 
+"""
+Pagination parameters
+
+Forward pagination parameters can't be mixed with Backward pagination parameters simultaneously
+
+first & after => Forward Pagination
+
+last & before => Backward Pagination
+"""
 input CursorConnectionArgs {
+  """
+  Set the minimum boundary
+
+  Use the "endCursor" field of "pageInfo"
+  """
   after: IntID
+
+  """
+  Set the maximum boundary
+
+  Use the "startCursor" field of "pageInfo"
+  """
   before: IntID
+
+  """
+  Set the limit of nodes to be fetched
+
+  It can't be more than 50
+  """
   first: NonNegativeInt
+
+  """
+  Set the limit of nodes to be fetched
+
+  It can't be more than 50
+  """
   last: NonNegativeInt
 }
 
@@ -255,18 +963,63 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+"""
+Domain entity
+"""
 type Domain {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  KCs associated with the domain
+  """
   kcs: [KC!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Model States associated with domain
+  """
+  modelStates(input: ModelStateConnectionInput!): ModelStateConnection!
+
+  """
+  Projects associated with the domain
+  """
   projects: [Project!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
 }
 
+"""
+Paginated Domains
+"""
 type DomainsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [Domain!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
@@ -275,32 +1028,124 @@ A field whose value conforms to the standard internet email address format as sp
 """
 scalar EmailAddress
 
+"""
+Group Entity
+
+- Used to group/cluster users
+- Set permissions flags to the users
+- Associate projects to users, allowing users to access the projects
+"""
 type Group {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Permissions flags
+  """
   flags: GroupFlags!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Projects associated with the group
+  """
   projects: [Project!]!
+
+  """
+  IDs of projects associated with the group
+  """
   projectsIds: [IntID!]!
+
+  """
+  Tags associated with the group
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
+
+  """
+  Users associated with the group
+  """
   users: [User!]!
 }
 
+"""
+Permissions flags of group
+"""
 type GroupFlags {
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Allows the users part of the group to read all the actions of the projects of the group
+  """
   readProjectActions: Boolean!
+
+  """
+  Allows the users part of the group to read all the model states of the projects of the group
+  """
+  readProjectModelStates: Boolean!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
 }
 
+"""
+Group Flags input data
+"""
 input GroupFlagsInput {
+  """
+  Allows the users part of the group to read all the actions of the projects of the group
+  """
   readProjectActions: Boolean!
+
+  """
+  Allows the users part of the group to read all the model states of the projects of the group
+  """
+  readProjectModelStates: Boolean!
 }
 
+"""
+Paginated Groups
+"""
 type GroupsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [Group!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
@@ -310,35 +1155,301 @@ ID that parses as non-negative integer, serializes to string, and can be passed 
 scalar IntID
 
 """
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""
 The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
 scalar JSONObject
 
+"""
+KC / Knowledge Component Entity
+"""
 type KC {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Domain associated with the KC
+  """
   domain: Domain!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Topics associated with the KC
+  """
   topics: [Topic!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
 }
 
+"""
+Paginated KCs
+"""
 type KCsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [KC!]!
+
+  """
+  Pagination related information
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+Model State Entity
+"""
+type ModelState {
+  """
+  Date of creation
+  """
+  createdAt: DateTime!
+
+  """
+  Creator of model state
+  """
+  creator: String!
+
+  """
+  Domain associated with Model State
+  """
+  domain: Domain!
+
+  """
+  Unique numeric identifier
+  """
+  id: IntID!
+
+  """
+  Arbitrary JSON Data
+  """
+  json: JSON!
+
+  """
+  Type / Category of model state
+  """
+  type: String
+
+  """
+  Date of last update
+  """
+  updatedAt: DateTime!
+
+  """
+  User associated with Model State
+  """
+  user: User!
+}
+
+"""
+Paginated Model States
+"""
+type ModelStateConnection implements Connection {
+  """
+  Nodes of the current page
+  """
+  nodes: [ModelState!]!
+
+  """
+  Pagination related information
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+Pagination parameters of Model States
+"""
+input ModelStateConnectionInput {
+  """
+  Customize search/filter parameters
+  """
+  filters: ModelStateFilter
+
+  """
+  Customize order, by default it orders descendingly by id
+  """
+  orderBy: ModelStateOrderBy
+
+  """
+  Pagination-specific parameters
+  """
+  pagination: CursorConnectionArgs!
+}
+
+"""
+Creators of Model States
+"""
+type ModelStateCreator {
+  """
+  Date of creation
+  """
+  createdAt: DateTime!
+
+  """
+  Unique numeric identifier
+  """
+  id: IntID!
+  name: String!
+
+  """
+  Date of last update
+  """
+  updatedAt: DateTime!
+}
+
+"""
+Paginated Model State Creators
+"""
+type ModelStateCreatorConnection implements Connection {
+  """
+  Nodes of the current page
+  """
+  nodes: [ModelStateCreator!]!
+
+  """
+  Pagination related information
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+Filter model states data
+"""
+input ModelStateFilter {
+  """
+  Filter by the specified creators
+
+  If states's creator matches any of the specified creators, the state is included
+  """
+  creators: [String!]
+
+  """
+  Filter by the specified types
+
+  If state's type matches any of the specified types, the state is included
+  """
+  type: [String!]
+}
+
+"""
+Order Model States
+"""
+input ModelStateOrderBy {
+  """
+  Order the model states ascendingly or descendingly
+
+  Following the cursor pagination's nature, ordering by "id" tends to follow the state creation date, but it can't be guaranteed
+
+  By default the states are ordered descendingly, showing the newer states first
+  """
+  id: ORDER_BY = DESC
+}
+
+"""
+Types/Categories of Model States
+"""
+type ModelStateType {
+  """
+  Date of creation
+  """
+  createdAt: DateTime!
+
+  """
+  Unique numeric identifier
+  """
+  id: IntID!
+
+  """
+  Name of the model type
+  """
+  name: String!
+
+  """
+  Date of last update
+  """
+  updatedAt: DateTime!
+}
+
+"""
+Paginated Model State Types
+"""
+type ModelStateTypeConnection implements Connection {
+  """
+  Nodes of the current page
+  """
+  nodes: [ModelStateType!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
 type Mutation {
+  """
+  Report an action to the modeling service
+
+  - User authentication is required
+  - Authenticated user has to be associated with specified project
+  """
   action(data: ActionInput!): Void
+
+  """
+  [ADMIN] Admin related content mutations, only authenticated users with the role "ADMIN" can access
+  """
   adminContent: AdminContentMutations!
+
+  """
+  [ADMIN] Admin related domain mutations, only authenticated users with the role "ADMIN" can access
+  """
   adminDomain: AdminDomainMutations!
+
+  """
+  [ADMIN] Admin related project mutations, only authenticated users with the role "ADMIN" can access
+  """
   adminProjects: AdminProjectsMutations!
+
+  """
+  [ADMIN] Admin related user mutations, only authenticated users with the role "ADMIN" can access
+  """
   adminUsers: AdminUserMutations!
+
+  """
+  Returns 'Hello World!'
+  """
   hello: String!
 }
 
+"""
+Minimum Entity Information
+"""
 interface Node {
+  """
+  Unique numeric identifier
+  """
   id: IntID!
 }
 
@@ -347,62 +1458,303 @@ Integers that will have a value of 0 or more.
 """
 scalar NonNegativeInt
 
+"""
+Order ascendingly or descendingly
+"""
 enum ORDER_BY {
   ASC
   DESC
 }
 
+"""
+Paginated related information
+"""
 type PageInfo {
+  """
+  Cursor parameter normally used for forward pagination
+  """
   endCursor: String
+
+  """
+  Utility field that returns "true" if a next page can be fetched
+  """
   hasNextPage: Boolean!
+
+  """
+  Utility field that returns "true" if a previous page can be fetched
+  """
   hasPreviousPage: Boolean!
+
+  """
+  Cursor parameter normally used for backward pagination
+  """
   startCursor: String
 }
 
+"""
+Project entity
+"""
 type Project {
+  """
+  All actions of the project
+
+  ADMIN User role or "readProjectActions" group permissions flag required
+  """
   actions(
     filters: ProjectActionsFilter
     pagination: CursorConnectionArgs!
   ): ActionsConnection!
+
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Content associated with project
+  """
+  content(
+    filters: ProjectContentFilter
+    pagination: CursorConnectionArgs!
+  ): ContentConnection!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Domains associated with the project
+  """
   domains: [Domain!]!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Topics associated with the project
+  """
+  topics: [Topic!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
 }
 
+"""
+Filter the actions of a project
+"""
 input ProjectActionsFilter {
+  """
+  Filter by the specified content
+
+  If action's content matches any of the specified content, the action is included
+  """
   content: [IntID!]
+
+  """
+  Filter by the specified end date
+
+  If action's timestamp is before the specified date, the action is included
+  """
   endDate: DateTime
+
+  """
+  Filter by the specified KCs
+
+  If any of the action's KCs matches any of the specified KCs, the action is included
+  """
   kcs: [IntID!]
+
+  """
+  Filter by the specified starting date
+
+  If action's timestamp is after the specified date, the action is included
+  """
   startDate: DateTime
+
+  """
+  Filter by the specified topics
+
+  If action's topic matches any of the specified topics, the action is included
+  """
   topics: [IntID!]
+
+  """
+  Filter by the specified users
+
+  If action's user matches any of the specified users, the action is included
+  """
   users: [IntID!]
+
+  """
+  Filter by the specified verbs
+
+  If action's verb matches any of the specified verbs, the action is included
+  """
   verbNames: [String!]
 }
 
+"""
+Filter project content
+"""
+input ProjectContentFilter {
+  """
+  Filter by the specified ending created date
+
+  If content's creation date is before the specified date, the content is included
+  """
+  createdEndDate: DateTime
+
+  """
+  Filter by the specified starting created date
+
+  If content's creation date is after the specified date, the content is included
+  """
+  createdStartDate: DateTime
+
+  """
+  Filter by the specified KCs
+
+  If any of the content's KCs matches any of the specified KCs, the content is included
+  """
+  kcs: [IntID!]
+
+  """
+  Filter by the specified tags
+
+  If any of the content's tags matches any of the specified tags, the content is included
+  """
+  tags: [String!]
+
+  """
+  Filter by the specified topics
+
+  If content's topic matches any of the specified topics, the content is included
+  """
+  topics: [IntID!]
+
+  """
+  Filter by the specified ending last updated date
+
+  If content's last updated date is before the specified date, the content is included
+  """
+  updatedEndDate: DateTime
+
+  """
+  Filter by the specified starting last updated date
+
+  If content's last updated date is after the specified date, the content is included
+  """
+  updatedStartDate: DateTime
+}
+
+"""
+Paginated Projects
+"""
 type ProjectsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [Project!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
 type Query {
+  """
+  [ADMIN] Admin related actions queries, only authenticated users with the role "ADMIN" can access
+  """
   adminActions: AdminActionQueries!
+
+  """
+  [ADMIN] Admin related content queries, only authenticated users with the role "ADMIN" can access
+  """
   adminContent: AdminContentQueries!
+
+  """
+  [ADMIN] Admin related domain queries, only authenticated users with the role "ADMIN" can access
+  """
   adminDomain: AdminDomainQueries!
 
   """
   [ADMIN] Project related administration queries
   """
   adminProjects: AdminProjectsQueries!
+
+  """
+  [ADMIN] Admin related state queries, only authenticated users with the role "ADMIN" can access
+  """
+  adminState: AdminStateQueries!
+
+  """
+  [ADMIN] Admin related user queries, only authenticated users with the role "ADMIN" can access
+  """
   adminUsers: AdminUserQueries!
+
+  """
+  Get all the content associated with the specified identifiers
+
+  The content data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   content(ids: [IntID!]!): [Content!]!
+
+  """
+  Get specified content by "code".
+
+  - If user is not authenticated it throws.
+  - If authenticated user has no permissions on the corresponding project it returns NULL.
+  """
+  contentByCode(code: String!): Content
+
+  """
+  Authenticated user information
+  """
   currentUser: User
+
+  """
+  Get all the domains associated with the specified identifiers
+
+  The domains data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   domains(ids: [IntID!]!): [Domain!]!
+
+  """
+  Get all the groups associated with the specified identifiers
+
+  The groups data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   groups(ids: [IntID!]!): [Group!]!
+
+  """
+  Returns 'Hello World!'
+  """
   hello: String!
-  hello2: String!
+
+  """
+  Get all the KCs associated with the specified identifiers
+
+  The KCs data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   kcs(ids: [IntID!]!): [KC!]!
 
   """
@@ -412,12 +1764,47 @@ type Query {
   - If authenticated user has no permissions on the specified project it returns NULL.
   """
   project(code: String, id: IntID): Project
+
+  """
+  Get all the projects associated with the specified identifiers
+
+  The projects data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   projects(ids: [IntID!]!): [Project!]!
+
+  """
+  Get specified topic by "code".
+
+  - If user is not authenticated it throws.
+  - If authenticated user has no permissions on the corresponding project it returns NULL.
+  """
+  topicByCode(code: String!): Topic
+
+  """
+  Get all the topics associated with the specified identifiers
+
+  The topics data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   topics(ids: [IntID!]!): [Topic!]!
+
+  """
+  Get all the users associated with the specified identifiers
+
+  The users data is guaranteed to follow the specified identifiers order
+
+  If any of the specified identifiers is not found or forbidden, query fails
+  """
   users(ids: [IntID!]!): [User!]!
 }
 
 type Subscription {
+  """
+  Emits 'Hello World1', 'Hello World2', 'Hello World3', 'Hello World4' and 'Hello World5'
+  """
   hello: String!
 }
 
@@ -426,22 +1813,91 @@ The javascript `Date` as integer. Type represents date and time as number of mil
 """
 scalar Timestamp
 
+"""
+Topic entity
+"""
 type Topic {
+  """
+  Childrens topics
+
+  Direct childrens of the current topic
+
+  To build the topics tree, use the "parent" topic
+  """
   childrens: [Topic!]!
+
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Content associated with topic
+  """
   content: [Content!]!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  KCs associated with the topic
+  """
   kcs: [KC!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Parent topic
+
+  Used to set the hierarchy of topics
+  """
   parent: Topic
+
+  """
+  Project associated with the topic
+  """
   project: Project!
+
+  """
+  Parameter that can be used to sort a list of domains
+  """
   sortIndex: Int
+
+  """
+  Tags associated with the domain
+
+  Tags can be used to categorize or filter
+  """
+  tags: [String!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
 }
 
+"""
+Paginated Topics
+"""
 type TopicsConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [Topic!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 
@@ -450,92 +1906,372 @@ A field whose value conforms to the standard URL format as specified in RFC3986:
 """
 scalar URL
 
+"""
+Content update input data
+"""
 input UpdateContent {
+  """
+  Binary content encoded in base64
+
+  If present, binaryFilename has to be specified
+  """
   binaryBase64: String
+
+  """
+  Binary content filename
+
+  If present, it's required to contain an extension where the mimetype can be inferred
+  """
   binaryFilename: String
+
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Arbitrary content description
+  """
   description: String!
+
+  """
+  Current content identifier
+  """
   id: IntID!
+
+  """
+  Arbitrary JSON object data
+  """
   json: JSONObject
+
+  """
+  KCs associated with the content
+  """
   kcs: [IntID!]!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Project associated with content
+  """
   projectId: IntID!
+
+  """
+  Tags associated with the content
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
+
+  """
+  Topics associated with the content
+  """
   topics: [IntID!]!
+
+  """
+  External URL
+  """
   url: URL
 }
 
+"""
+Domain update input data
+"""
 input UpdateDomain {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Current domain identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
 }
 
+"""
+Group update input data
+"""
 input UpdateGroupInput {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Permissions flags of group
+  """
   flags: GroupFlagsInput
+
+  """
+  Current group identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Projects associated with the group
+  """
   projectIds: [IntID!]!
+
+  """
+  Tags associated with the group
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
 }
 
 input UpdateKCInput {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Unique numeric identifier of the current KC
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
 }
 
+"""
+Project update input data
+"""
 input UpdateProject {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Domains associated with project
+  """
   domains: [IntID!]!
+
+  """
+  Current project identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
 }
 
+"""
+Topic update input data
+"""
 input UpdateTopic {
+  """
+  Unique string identifier
+  """
   code: String!
+
+  """
+  Content associated with topic
+  """
   contentIds: [IntID!]!
+
+  """
+  Current topic identifier
+  """
   id: IntID!
+
+  """
+  Human readable identifier
+  """
   label: String!
+
+  """
+  Parent topic
+
+  Used to set the hierarchy of topics
+  """
   parentTopicId: IntID
+
+  """
+  Parameter that can be used to sort a list of topics
+  """
   sortIndex: Int
+
+  """
+  Tags associated with the topic
+
+  Tags can be used to categorize or filter
+  """
+  tags: [String!]!
 }
 
+"""
+User update input data
+"""
 input UpdateUserInput {
+  """
+  Current user identifier
+  """
   id: IntID!
+
+  """
+  Locked flag
+  """
   locked: Boolean!
+
+  """
+  Name of person
+  """
   name: String
+
+  """
+  Projects associated with user
+  """
   projectIds: [IntID!]!
+
+  """
+  Role of user
+  """
   role: UserRole!
+
+  """
+  Tags associated with the user
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
 }
 
+"""
+User entity
+"""
 type User {
+  """
+  Active flag
+
+  By default it starts as "false", and the first time the user access the system, it's set as "true"
+  """
   active: Boolean!
+
+  """
+  Date of creation
+  """
   createdAt: DateTime!
+
+  """
+  Email Address
+  """
   email: String!
-  enabled: Boolean!
+
+  """
+  Groups associated with the user
+  """
   groups: [Group!]!
+
+  """
+  Unique numeric identifier
+  """
   id: IntID!
+
+  """
+  Date of latest user access
+  """
   lastOnline: DateTime
+
+  """
+  Locked user authentication
+
+  If set as "true", user won't be able to use the system
+  """
   locked: Boolean!
+
+  """
+  Model States associated with user
+  """
+  modelStates(input: ModelStateConnectionInput!): ModelStateConnection!
+
+  """
+  Name of person
+  """
   name: String
+
+  """
+  Picture of user, set by external authentication service
+  """
   picture: String
+
+  """
+  Projects associated with the user
+  """
   projects: [Project!]!
+
+  """
+  IDs of projects associated with the user
+  """
   projectsIds: [IntID!]!
+
+  """
+  User role, by default is USER
+  """
   role: UserRole!
+
+  """
+  Tags associated with the user
+
+  Tags can be used to categorize or filter
+  """
   tags: [String!]!
+
+  """
+  Date of last update
+  """
   updatedAt: DateTime!
 }
 
+"""
+Possible roles of an authenticated user
+"""
 enum UserRole {
+  """
+  Administrator of the system
+
+  Most of the authorization logic is enabled
+  """
   ADMIN
+
+  """
+  Default user role
+  """
   USER
 }
 
+"""
+Paginated Users
+"""
 type UsersConnection implements Connection {
+  """
+  Nodes of the current page
+  """
   nodes: [User!]!
+
+  """
+  Pagination related information
+  """
   pageInfo: PageInfo!
 }
 

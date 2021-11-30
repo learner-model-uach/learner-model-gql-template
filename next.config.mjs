@@ -2,7 +2,7 @@
  * @type {import("next").NextConfig}
  */
 const config = {
-  swcMinify: true,
+  swcMinify: false,
 };
 
 export default config;
