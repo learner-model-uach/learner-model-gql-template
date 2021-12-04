@@ -1,6 +1,7 @@
 /* eslint-disable */
 import type { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
@@ -73,7 +74,7 @@ export type Action = {
 /** Input of action report */
 export type ActionInput = {
   /** Arbitrary numeric amount */
-  amount?: Maybe<Scalars["Float"]>;
+  amount?: InputMaybe<Scalars["Float"]>;
   /**
    * Content identifier
    *
@@ -81,13 +82,13 @@ export type ActionInput = {
    *
    * Validation of content presence/authorization is made before confirming action
    */
-  contentID?: Maybe<Scalars["ID"]>;
+  contentID?: InputMaybe<Scalars["ID"]>;
   /** Arbitrary string content detail */
-  detail?: Maybe<Scalars["String"]>;
+  detail?: InputMaybe<Scalars["String"]>;
   /** Arbitrary JSON object data */
-  extra?: Maybe<Scalars["JSONObject"]>;
+  extra?: InputMaybe<Scalars["JSONObject"]>;
   /** Arbitrary hint identifier */
-  hintID?: Maybe<Scalars["ID"]>;
+  hintID?: InputMaybe<Scalars["ID"]>;
   /**
    * KCs identifiers
    *
@@ -95,7 +96,7 @@ export type ActionInput = {
    *
    * Validation of kc presence/authorization is made before confirming action
    */
-  kcsIDs?: Maybe<Array<Scalars["ID"]>>;
+  kcsIDs?: InputMaybe<Array<Scalars["ID"]>>;
   /**
    * Identifier of project related to action.
    *
@@ -103,9 +104,9 @@ export type ActionInput = {
    */
   projectId: Scalars["IntID"];
   /** Arbitrary numeric result */
-  result?: Maybe<Scalars["Float"]>;
+  result?: InputMaybe<Scalars["Float"]>;
   /** Arbitrary step identifier */
-  stepID?: Maybe<Scalars["ID"]>;
+  stepID?: InputMaybe<Scalars["ID"]>;
   /**
    * Timestamp of the action.
    *
@@ -119,7 +120,7 @@ export type ActionInput = {
    *
    * Validation of topic presence/authorization is made before confirming action
    */
-  topicID?: Maybe<Scalars["ID"]>;
+  topicID?: InputMaybe<Scalars["ID"]>;
   /** Type of action, if specified verb doesn't exist, it's automatically created */
   verbName: Scalars["String"];
 };
@@ -170,8 +171,8 @@ export type AdminActionQueries = {
 
 /** Admin Action-Related Queries */
 export type AdminActionQueriesAllActionsArgs = {
-  filters?: Maybe<AdminActionsFilter>;
-  orderBy?: Maybe<AdminActionsOrderBy>;
+  filters?: InputMaybe<AdminActionsFilter>;
+  orderBy?: InputMaybe<AdminActionsOrderBy>;
   pagination: CursorConnectionArgs;
 };
 
@@ -187,49 +188,49 @@ export type AdminActionsFilter = {
    *
    * If action's content matches any of the specified content, the action is included
    */
-  content?: Maybe<Array<Scalars["IntID"]>>;
+  content?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified end date
    *
    * If action's timestamp is before the specified date, the action is included
    */
-  endDate?: Maybe<Scalars["DateTime"]>;
+  endDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified KCs
    *
    * If any of the action's KCs matches any of the specified KCs, the action is included
    */
-  kcs?: Maybe<Array<Scalars["IntID"]>>;
+  kcs?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified projects
    *
    * If action's project matches any of the specified projects, the action is included
    */
-  projects?: Maybe<Array<Scalars["IntID"]>>;
+  projects?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified starting date
    *
    * If action's timestamp is after the specified date, the action is included
    */
-  startDate?: Maybe<Scalars["DateTime"]>;
+  startDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified topics
    *
    * If action's topic matches any of the specified topics, the action is included
    */
-  topics?: Maybe<Array<Scalars["IntID"]>>;
+  topics?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified users
    *
    * If action's user matches any of the specified users, the action is included
    */
-  users?: Maybe<Array<Scalars["IntID"]>>;
+  users?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified verbs
    *
    * If action's verb matches any of the specified verbs, the action is included
    */
-  verbNames?: Maybe<Array<Scalars["String"]>>;
+  verbNames?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** Order Admin Actions */
@@ -241,7 +242,7 @@ export type AdminActionsOrderBy = {
    *
    * By default the actions are ordered descendingly, showing the newer actions first
    */
-  id?: Maybe<Order_By>;
+  id?: InputMaybe<Order_By>;
 };
 
 /** Filter all content of admin query */
@@ -251,13 +252,13 @@ export type AdminContentFilter = {
    *
    * If the content's project matches any of the specified projects, the content is included
    */
-  projects?: Maybe<Array<Scalars["IntID"]>>;
+  projects?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified tags
    *
    * If any of the content's tags matches any of the specified tags, the content is included
    */
-  tags?: Maybe<Array<Scalars["String"]>>;
+  tags?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** [ADMIN] Admin related content mutations, only authenticated users with the role "ADMIN" can access */
@@ -292,7 +293,7 @@ export type AdminContentQueries = {
 
 /** Admin Content-Related Queries */
 export type AdminContentQueriesAllContentArgs = {
-  filters?: Maybe<AdminContentFilter>;
+  filters?: InputMaybe<AdminContentFilter>;
   pagination: CursorConnectionArgs;
 };
 
@@ -368,19 +369,19 @@ export type AdminDomainQueries = {
 
 /** Admin Domain-Related Queries */
 export type AdminDomainQueriesAllDomainsArgs = {
-  filters?: Maybe<AdminDomainsFilter>;
+  filters?: InputMaybe<AdminDomainsFilter>;
   pagination: CursorConnectionArgs;
 };
 
 /** Admin Domain-Related Queries */
 export type AdminDomainQueriesAllKCsArgs = {
-  filters?: Maybe<AdminKCsFilter>;
+  filters?: InputMaybe<AdminKCsFilter>;
   pagination: CursorConnectionArgs;
 };
 
 /** Admin Domain-Related Queries */
 export type AdminDomainQueriesAllTopicsArgs = {
-  filters?: Maybe<AdminTopicsFilter>;
+  filters?: InputMaybe<AdminTopicsFilter>;
   pagination: CursorConnectionArgs;
 };
 
@@ -391,7 +392,7 @@ export type AdminDomainsFilter = {
    *
    * If the domain's project matches any of the specified projects, the domain is included
    */
-  projects?: Maybe<Array<Scalars["IntID"]>>;
+  projects?: InputMaybe<Array<Scalars["IntID"]>>;
 };
 
 /** Filter all groups of admin query */
@@ -401,7 +402,7 @@ export type AdminGroupsFilter = {
    *
    * Tags can be used to categorize or filter
    */
-  tags?: Maybe<Array<Scalars["String"]>>;
+  tags?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** Filter all KCs of admin query */
@@ -411,19 +412,19 @@ export type AdminKCsFilter = {
    *
    * If the KC's domain matches any of the specified projects, the KC is included
    */
-  domains?: Maybe<Array<Scalars["IntID"]>>;
+  domains?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified projects
    *
    * If the KC's project matches any of the specified projects, the KC is included
    */
-  projects?: Maybe<Array<Scalars["IntID"]>>;
+  projects?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified topics
    *
    * If any of the KC's topics matches any of the specified topics, the KC is included
    */
-  topics?: Maybe<Array<Scalars["IntID"]>>;
+  topics?: InputMaybe<Array<Scalars["IntID"]>>;
 };
 
 /** Admin Project-Related Mutations */
@@ -494,7 +495,7 @@ export type AdminTopicsFilter = {
    *
    * If the topic's project matches any of the specified projects, the topic is included
    */
-  projects?: Maybe<Array<Scalars["IntID"]>>;
+  projects?: InputMaybe<Array<Scalars["IntID"]>>;
 };
 
 /** Admin User-Related Queries */
@@ -566,13 +567,13 @@ export type AdminUserQueries = {
 
 /** Admin User-Related Queries */
 export type AdminUserQueriesAllGroupsArgs = {
-  filters?: Maybe<AdminGroupsFilter>;
+  filters?: InputMaybe<AdminGroupsFilter>;
   pagination: CursorConnectionArgs;
 };
 
 /** Admin User-Related Queries */
 export type AdminUserQueriesAllUsersArgs = {
-  filters?: Maybe<AdminUsersFilter>;
+  filters?: InputMaybe<AdminUsersFilter>;
   pagination: CursorConnectionArgs;
 };
 
@@ -583,7 +584,7 @@ export type AdminUsersFilter = {
    *
    * If any of the user's tags matches any of the specified tags, the user is included
    */
-  tags?: Maybe<Array<Scalars["String"]>>;
+  tags?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** Pagination Interface */
@@ -657,19 +658,19 @@ export type CreateContent = {
    *
    * If present, binaryFilename has to be specified
    */
-  binaryBase64?: Maybe<Scalars["String"]>;
+  binaryBase64?: InputMaybe<Scalars["String"]>;
   /**
    * Binary content filename
    *
    * If present, it's required to contain an extension where the mimetype can be inferred
    */
-  binaryFilename?: Maybe<Scalars["String"]>;
+  binaryFilename?: InputMaybe<Scalars["String"]>;
   /** Unique string identifier */
   code: Scalars["String"];
   /** Arbitrary content description */
   description: Scalars["String"];
   /** Arbitrary JSON object data */
-  json?: Maybe<Scalars["JSONObject"]>;
+  json?: InputMaybe<Scalars["JSONObject"]>;
   /** KCs associated with the content */
   kcs: Array<Scalars["IntID"]>;
   /** Human readable identifier */
@@ -685,7 +686,7 @@ export type CreateContent = {
   /** Topics associated with the content */
   topics: Array<Scalars["IntID"]>;
   /** External URL */
-  url?: Maybe<Scalars["URL"]>;
+  url?: InputMaybe<Scalars["URL"]>;
 };
 
 /** Domain creation input data */
@@ -703,7 +704,7 @@ export type CreateGroupInput = {
   /** Unique string identifier */
   code: Scalars["String"];
   /** Permissions flags */
-  flags?: Maybe<GroupFlagsInput>;
+  flags?: InputMaybe<GroupFlagsInput>;
   /** Human readable identifier */
   label: Scalars["String"];
   /** Projects associated with the group */
@@ -749,11 +750,11 @@ export type CreateTopic = {
    *
    * Used to set the hierarchy of topics
    */
-  parentTopicId?: Maybe<Scalars["IntID"]>;
+  parentTopicId?: InputMaybe<Scalars["IntID"]>;
   /** Project associated with topic */
   projectId: Scalars["IntID"];
   /** Parameter that can be used to sort a list of topics */
-  sortIndex?: Maybe<Scalars["Int"]>;
+  sortIndex?: InputMaybe<Scalars["Int"]>;
   /**
    * Tags associated with the topic
    *
@@ -777,25 +778,25 @@ export type CursorConnectionArgs = {
    *
    * Use the "endCursor" field of "pageInfo"
    */
-  after?: Maybe<Scalars["IntID"]>;
+  after?: InputMaybe<Scalars["IntID"]>;
   /**
    * Set the maximum boundary
    *
    * Use the "startCursor" field of "pageInfo"
    */
-  before?: Maybe<Scalars["IntID"]>;
+  before?: InputMaybe<Scalars["IntID"]>;
   /**
    * Set the limit of nodes to be fetched
    *
    * It can't be more than 50
    */
-  first?: Maybe<Scalars["NonNegativeInt"]>;
+  first?: InputMaybe<Scalars["NonNegativeInt"]>;
   /**
    * Set the limit of nodes to be fetched
    *
    * It can't be more than 50
    */
-  last?: Maybe<Scalars["NonNegativeInt"]>;
+  last?: InputMaybe<Scalars["NonNegativeInt"]>;
 };
 
 /** Domain entity */
@@ -961,9 +962,9 @@ export type ModelStateConnection = Connection & {
 /** Pagination parameters of Model States */
 export type ModelStateConnectionInput = {
   /** Customize search/filter parameters */
-  filters?: Maybe<ModelStateFilter>;
+  filters?: InputMaybe<ModelStateFilter>;
   /** Customize order, by default it orders descendingly by id */
-  orderBy?: Maybe<ModelStateOrderBy>;
+  orderBy?: InputMaybe<ModelStateOrderBy>;
   /** Pagination-specific parameters */
   pagination: CursorConnectionArgs;
 };
@@ -996,13 +997,13 @@ export type ModelStateFilter = {
    *
    * If states's creator matches any of the specified creators, the state is included
    */
-  creators?: Maybe<Array<Scalars["String"]>>;
+  creators?: InputMaybe<Array<Scalars["String"]>>;
   /**
    * Filter by the specified types
    *
    * If state's type matches any of the specified types, the state is included
    */
-  type?: Maybe<Array<Scalars["String"]>>;
+  type?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** Order Model States */
@@ -1014,7 +1015,7 @@ export type ModelStateOrderBy = {
    *
    * By default the states are ordered descendingly, showing the newer states first
    */
-  id?: Maybe<Order_By>;
+  id?: InputMaybe<Order_By>;
 };
 
 /** Types/Categories of Model States */
@@ -1119,13 +1120,13 @@ export type Project = {
 
 /** Project entity */
 export type ProjectActionsArgs = {
-  filters?: Maybe<ProjectActionsFilter>;
+  filters?: InputMaybe<ProjectActionsFilter>;
   pagination: CursorConnectionArgs;
 };
 
 /** Project entity */
 export type ProjectContentArgs = {
-  filters?: Maybe<ProjectContentFilter>;
+  filters?: InputMaybe<ProjectContentFilter>;
   pagination: CursorConnectionArgs;
 };
 
@@ -1136,43 +1137,43 @@ export type ProjectActionsFilter = {
    *
    * If action's content matches any of the specified content, the action is included
    */
-  content?: Maybe<Array<Scalars["IntID"]>>;
+  content?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified end date
    *
    * If action's timestamp is before the specified date, the action is included
    */
-  endDate?: Maybe<Scalars["DateTime"]>;
+  endDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified KCs
    *
    * If any of the action's KCs matches any of the specified KCs, the action is included
    */
-  kcs?: Maybe<Array<Scalars["IntID"]>>;
+  kcs?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified starting date
    *
    * If action's timestamp is after the specified date, the action is included
    */
-  startDate?: Maybe<Scalars["DateTime"]>;
+  startDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified topics
    *
    * If action's topic matches any of the specified topics, the action is included
    */
-  topics?: Maybe<Array<Scalars["IntID"]>>;
+  topics?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified users
    *
    * If action's user matches any of the specified users, the action is included
    */
-  users?: Maybe<Array<Scalars["IntID"]>>;
+  users?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified verbs
    *
    * If action's verb matches any of the specified verbs, the action is included
    */
-  verbNames?: Maybe<Array<Scalars["String"]>>;
+  verbNames?: InputMaybe<Array<Scalars["String"]>>;
 };
 
 /** Filter project content */
@@ -1182,43 +1183,43 @@ export type ProjectContentFilter = {
    *
    * If content's creation date is before the specified date, the content is included
    */
-  createdEndDate?: Maybe<Scalars["DateTime"]>;
+  createdEndDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified starting created date
    *
    * If content's creation date is after the specified date, the content is included
    */
-  createdStartDate?: Maybe<Scalars["DateTime"]>;
+  createdStartDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified KCs
    *
    * If any of the content's KCs matches any of the specified KCs, the content is included
    */
-  kcs?: Maybe<Array<Scalars["IntID"]>>;
+  kcs?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified tags
    *
    * If any of the content's tags matches any of the specified tags, the content is included
    */
-  tags?: Maybe<Array<Scalars["String"]>>;
+  tags?: InputMaybe<Array<Scalars["String"]>>;
   /**
    * Filter by the specified topics
    *
    * If content's topic matches any of the specified topics, the content is included
    */
-  topics?: Maybe<Array<Scalars["IntID"]>>;
+  topics?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified ending last updated date
    *
    * If content's last updated date is before the specified date, the content is included
    */
-  updatedEndDate?: Maybe<Scalars["DateTime"]>;
+  updatedEndDate?: InputMaybe<Scalars["DateTime"]>;
   /**
    * Filter by the specified starting last updated date
    *
    * If content's last updated date is after the specified date, the content is included
    */
-  updatedStartDate?: Maybe<Scalars["DateTime"]>;
+  updatedStartDate?: InputMaybe<Scalars["DateTime"]>;
 };
 
 /** Paginated Projects */
@@ -1348,8 +1349,8 @@ export type QueryKcsArgs = {
 };
 
 export type QueryProjectArgs = {
-  code?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["IntID"]>;
+  code?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["IntID"]>;
 };
 
 export type QueryProjectsArgs = {
@@ -1433,13 +1434,13 @@ export type UpdateContent = {
    *
    * If present, binaryFilename has to be specified
    */
-  binaryBase64?: Maybe<Scalars["String"]>;
+  binaryBase64?: InputMaybe<Scalars["String"]>;
   /**
    * Binary content filename
    *
    * If present, it's required to contain an extension where the mimetype can be inferred
    */
-  binaryFilename?: Maybe<Scalars["String"]>;
+  binaryFilename?: InputMaybe<Scalars["String"]>;
   /** Unique string identifier */
   code: Scalars["String"];
   /** Arbitrary content description */
@@ -1447,7 +1448,7 @@ export type UpdateContent = {
   /** Current content identifier */
   id: Scalars["IntID"];
   /** Arbitrary JSON object data */
-  json?: Maybe<Scalars["JSONObject"]>;
+  json?: InputMaybe<Scalars["JSONObject"]>;
   /** KCs associated with the content */
   kcs: Array<Scalars["IntID"]>;
   /** Human readable identifier */
@@ -1463,7 +1464,7 @@ export type UpdateContent = {
   /** Topics associated with the content */
   topics: Array<Scalars["IntID"]>;
   /** External URL */
-  url?: Maybe<Scalars["URL"]>;
+  url?: InputMaybe<Scalars["URL"]>;
 };
 
 /** Domain update input data */
@@ -1481,7 +1482,7 @@ export type UpdateGroupInput = {
   /** Unique string identifier */
   code: Scalars["String"];
   /** Permissions flags of group */
-  flags?: Maybe<GroupFlagsInput>;
+  flags?: InputMaybe<GroupFlagsInput>;
   /** Current group identifier */
   id: Scalars["IntID"];
   /** Human readable identifier */
@@ -1532,9 +1533,9 @@ export type UpdateTopic = {
    *
    * Used to set the hierarchy of topics
    */
-  parentTopicId?: Maybe<Scalars["IntID"]>;
+  parentTopicId?: InputMaybe<Scalars["IntID"]>;
   /** Parameter that can be used to sort a list of topics */
-  sortIndex?: Maybe<Scalars["Int"]>;
+  sortIndex?: InputMaybe<Scalars["Int"]>;
   /**
    * Tags associated with the topic
    *
@@ -1550,7 +1551,7 @@ export type UpdateUserInput = {
   /** Locked flag */
   locked: Scalars["Boolean"];
   /** Name of person */
-  name?: Maybe<Scalars["String"]>;
+  name?: InputMaybe<Scalars["String"]>;
   /** Projects associated with user */
   projectIds: Array<Scalars["IntID"]>;
   /** Role of user */
@@ -1569,7 +1570,7 @@ export type User = {
   /**
    * Active flag
    *
-   * By default it starts as "false", and the first time the user access the system, it's set as "true"
+   * By default it starts as "false", and the first time the user accesses the system, it's set as "true"
    */
   active: Scalars["Boolean"];
   /** Date of creation */
