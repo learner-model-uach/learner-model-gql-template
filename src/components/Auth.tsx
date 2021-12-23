@@ -1,5 +1,5 @@
 import { useAuth0, User as Auth0User } from "@auth0/auth0-react";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, useLatestRef } from "@chakra-ui/react";
 import Router from "next/router";
 import { FC, memo, useEffect } from "react";
 import { useGQLQuery } from "rq-gql";
@@ -23,6 +23,8 @@ export const AuthState = proxy<{
 export function SyncAuth() {
   const { user, getIdTokenClaims, isLoading } = useAuth0();
   const headersSnap = useSnapshot(rqGQLClient.headers);
+
+  const latestGetIdToken = useLatestRef(getIdTokenClaims);
 
   const hasAuthorizationToken = !!headersSnap.authorization;
 
@@ -79,18 +81,18 @@ export function SyncAuth() {
   useEffect(() => {
     if (user) {
       AuthState.isLoading = true;
-      getIdTokenClaims().then((data) => {
+      latestGetIdToken.current().then((data) => {
         rqGQLClient.headers.authorization = `Bearer ${data.__raw}`;
 
         AuthState.isLoading = true;
       });
     }
-  }, [user]);
+  }, [user, latestGetIdToken]);
 
   return <OnStart />;
 }
 
-const OnStart = memo(() => {
+const OnStart = memo(function OnStart() {
   const { project } = useAuth();
 
   const startAction = useAction({
