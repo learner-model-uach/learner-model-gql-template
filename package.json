@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "concurrently -m 1 -r \"graphql-codegen --config codegen.yaml\" \"next build\"",
     "dev": "concurrently -r next pnpm:gql:watch pnpm:open:browser",
     "gql": "graphql-codegen --config codegen.yaml",
     "gql:watch": "graphql-codegen --config codegen.yaml --watch",
