@@ -13,6 +13,7 @@ export const AuthState = proxy<{
   user: CurrentUserQuery["currentUser"];
   project: CurrentUserQuery["project"];
   isLoading: boolean;
+  authorizationToken?: string;
 }>({
   auth0User: null,
   user: null,
@@ -22,11 +23,11 @@ export const AuthState = proxy<{
 
 export function SyncAuth() {
   const { user, getIdTokenClaims, isLoading } = useAuth0();
-  const headersSnap = useSnapshot(rqGQLClient.headers);
+  const { authorization } = useSnapshot(rqGQLClient.headers);
 
   const latestGetIdToken = useLatestRef(getIdTokenClaims);
 
-  const hasAuthorizationToken = !!headersSnap.authorization;
+  const hasAuthorizationToken = !!authorization;
 
   const { isLoading: currentUserIsLoading } = useGQLQuery(
     gql(/* GraphQL */ `
@@ -82,7 +83,8 @@ export function SyncAuth() {
     if (user) {
       AuthState.isLoading = true;
       latestGetIdToken.current().then((data) => {
-        rqGQLClient.headers.authorization = `Bearer ${data.__raw}`;
+        AuthState.authorizationToken =
+          rqGQLClient.headers.authorization = `Bearer ${data.__raw}`;
 
         AuthState.isLoading = true;
       });
