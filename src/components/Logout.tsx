@@ -19,7 +19,7 @@ export function Logout() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const cancelRef = useRef<any>(null);
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   return (
     <>
