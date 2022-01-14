@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@auth0/auth0-react': ^1.8.0
+  '@auth0/auth0-react': ^1.9.0
   '@chakra-ui/react': ^1.7.4
   '@chakra-ui/system': ^1.9.1
   '@emotion/react': ^11.7.1
@@ -32,7 +32,7 @@ specifiers:
   wait-on: ^6.0.0
 
 dependencies:
-  '@auth0/auth0-react': 1.8.0_react-dom@17.0.2+react@17.0.2
+  '@auth0/auth0-react': 1.9.0_react-dom@17.0.2+react@17.0.2
   '@chakra-ui/react': 1.7.4_22baa6f5acaf9d65b412ab335954e6a6
   '@chakra-ui/system': 1.9.1_922a85da57e3646a57465b7970b0de85
   '@emotion/react': 11.7.1_b08e3c15324cbe90a6ff8fcd416c932c
@@ -66,8 +66,8 @@ devDependencies:
 
 packages:
 
-  /@auth0/auth0-react/1.8.0_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-tlrabVy4mB07Jbw41S2Ze2a7eGLyL32xs5OURGHXrCCxPXOYpBMeV9FdPssIK6vbAVRiUgwoeiemFAGhLRLZ0w==}
+  /@auth0/auth0-react/1.9.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-VkovI2i7dI1dkIJAdS51O9XMq6vlcHJn9DL+if4rSxt+sNocFd1i4q0j07a9XbafBj4/WEkSbOiX93z2ZXqdAA==}
     peerDependencies:
       react: ^16.11.0 || ^17
       react-dom: ^16.11.0 || ^17
