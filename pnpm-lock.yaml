@@ -25,7 +25,7 @@ specifiers:
   react-dom: ^17.0.2
   react-icons: ^4.3.1
   react-query: ^3.34.8
-  rq-gql: ^0.3.1
+  rq-gql: ^0.3.2
   serialize-error: ^9.0.0
   typescript: ^4.5.4
   wait-on: ^6.0.0
@@ -46,7 +46,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
   react-query: 3.34.8_react-dom@17.0.2+react@17.0.2
-  rq-gql: 0.3.1_d0ab864df638add18e68bbbc6173efac
+  rq-gql: 0.3.2_d0ab864df638add18e68bbbc6173efac
   serialize-error: 9.0.0
 
 devDependencies:
@@ -1810,7 +1810,7 @@ packages:
   /@graphql-codegen/plugin-helpers/2.3.2_graphql@16.2.0:
     resolution: {integrity: sha512-19qFA5XMAWaAY64sBljjDPYfHjE+QMk/+oalCyY13WjSlcLDvYPfmFlCNgFSsydArDELlHR8T1GMbA7C42M8TA==}
     peerDependencies:
-      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || * || *
+      graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || *
     dependencies:
       '@graphql-tools/utils': 8.6.1_graphql@16.2.0
       change-case-all: 1.0.14
@@ -1995,7 +1995,7 @@ packages:
   /@graphql-tools/graphql-tag-pluck/7.1.5_graphql@16.2.0:
     resolution: {integrity: sha512-NKbFcjlg7cbK+scLXc6eVxXIhX4k8QL6lZ/y5Ju7yrpIN18k2vA78dI6W3Qb5qdftxbDNuC+kDmScZfzzxVPjQ==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || * || *
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || * || * || *
     dependencies:
       '@babel/parser': 7.16.8
       '@babel/traverse': 7.16.8
@@ -2153,7 +2153,7 @@ packages:
   /@graphql-tools/utils/8.6.1_graphql@16.2.0:
     resolution: {integrity: sha512-uxcfHCocp4ENoIiovPxUWZEHOnbXqj3ekWc0rm7fUhW93a1xheARNHcNKhwMTR+UKXVJbTFQdGI1Rl5XdyvDBg==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || * || * || * || *
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || *
     dependencies:
       graphql: 16.2.0
       tslib: 2.3.1
@@ -6105,12 +6105,12 @@ packages:
     dependencies:
       glob: 7.2.0
 
-  /rq-gql/0.3.1_d0ab864df638add18e68bbbc6173efac:
-    resolution: {integrity: sha512-K4MKVJXwt+nYLW3K2enCG9wdwbg8Timmyex+2p+Yjop53yeZJbUMe94UE/mnCyg8EmpW5OAt64HJICto2EZHtg==}
+  /rq-gql/0.3.2_d0ab864df638add18e68bbbc6173efac:
+    resolution: {integrity: sha512-qf3RX5vobc3atpqAB9enuPo3MtiDfmqyktKcPminE5JmT87lwBsBhTbSLZUiDuCSyVvqPeZR5UasIHtpNNS+vg==}
     peerDependencies:
-      '@graphql-typed-document-node/core': ^3.1.0
+      '@graphql-typed-document-node/core': ^3.1.1
       graphql: '*'
-      react-query: ^3.26.0
+      react-query: ^3.34.0
     dependencies:
       '@graphql-codegen/add': 3.1.1_graphql@16.2.0
       '@graphql-codegen/core': 2.4.0_graphql@16.2.0
