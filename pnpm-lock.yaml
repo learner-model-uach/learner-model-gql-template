@@ -24,7 +24,7 @@ specifiers:
   react: ^17.0.2
   react-dom: ^17.0.2
   react-icons: ^4.3.1
-  react-query: ^3.34.8
+  react-query: ^3.34.11
   rq-gql: ^0.3.2
   serialize-error: ^9.0.0
   typescript: ^4.5.5
@@ -45,8 +45,8 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
-  react-query: 3.34.8_react-dom@17.0.2+react@17.0.2
-  rq-gql: 0.3.2_d0ab864df638add18e68bbbc6173efac
+  react-query: 3.34.11_react-dom@17.0.2+react@17.0.2
+  rq-gql: 0.3.2_892f2e7481c3e549c7ace13185ce62b4
   serialize-error: 9.0.0
 
 devDependencies:
@@ -2045,7 +2045,7 @@ packages:
   /@graphql-tools/merge/8.2.1_graphql@16.2.0:
     resolution: {integrity: sha512-Q240kcUszhXiAYudjuJgNuLgy9CryDP3wp83NOZQezfA6h3ByYKU7xI6DiKrdjyVaGpYN3ppUmdj0uf5GaXzMA==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || *
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || * || *
     dependencies:
       '@graphql-tools/utils': 8.6.1_graphql@16.2.0
       graphql: 16.2.0
@@ -2110,7 +2110,7 @@ packages:
   /@graphql-tools/schema/8.3.1_graphql@16.2.0:
     resolution: {integrity: sha512-3R0AJFe715p4GwF067G5i0KCr/XIdvSfDLvTLEiTDQ8V/hwbOHEKHKWlEBHGRQwkG5lwFQlW1aOn7VnlPERnWQ==}
     peerDependencies:
-      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || *
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || * || *
     dependencies:
       '@graphql-tools/merge': 8.2.1_graphql@16.2.0
       '@graphql-tools/utils': 8.6.1_graphql@16.2.0
@@ -5777,8 +5777,8 @@ packages:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: false
 
-  /react-query/3.34.8_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-pl9e2VmVbgKf29Qn/WpmFVtB2g17JPqLLyOQg3GfSs/S2WABvip5xlT464vfXtilLPcJVg9bEHHlqmC38/nvDw==}
+  /react-query/3.34.11_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-vRC9J8dklE6rQ1uQHveNgoXOH4ceOn6Ww2+XUYOrEsUaSBZ76aQ/VTzDanXJn+E78lFQn0ajdSomduXP55iCwg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0
       react-dom: '*'
@@ -6061,7 +6061,7 @@ packages:
     dependencies:
       glob: 7.2.0
 
-  /rq-gql/0.3.2_d0ab864df638add18e68bbbc6173efac:
+  /rq-gql/0.3.2_892f2e7481c3e549c7ace13185ce62b4:
     resolution: {integrity: sha512-qf3RX5vobc3atpqAB9enuPo3MtiDfmqyktKcPminE5JmT87lwBsBhTbSLZUiDuCSyVvqPeZR5UasIHtpNNS+vg==}
     peerDependencies:
       '@graphql-typed-document-node/core': ^3.1.1
@@ -6079,7 +6079,7 @@ packages:
       '@graphql-typed-document-node/core': 3.1.1_graphql@16.2.0
       commander: 8.3.0
       graphql: 16.2.0
-      react-query: 3.34.8_react-dom@17.0.2+react@17.0.2
+      react-query: 3.34.11_react-dom@17.0.2+react@17.0.2
       valtio: 1.2.8_react@17.0.2
     transitivePeerDependencies:
       - '@babel/helper-module-imports'
