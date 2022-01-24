@@ -206,7 +206,7 @@ Admin Action-Related Queries
 """
 type AdminActionQueries {
   """
-  [ADMIN] Get all the actions currently in the system
+  Get all the actions currently in the system
 
   Pagination parameters are mandatory, but filters and orderBy are optional, and therefore the search can be customized.
   """
@@ -217,7 +217,7 @@ type AdminActionQueries {
   ): ActionsConnection!
 
   """
-  [ADMIN] Get all the action's verbs currently in the system
+  Get all the action's verbs currently in the system
   """
   allActionsVerbs(pagination: CursorConnectionArgs!): ActionsVerbsConnection!
 }
@@ -314,19 +314,24 @@ input AdminContentFilter {
   If any of the content's tags matches any of the specified tags, the content is included
   """
   tags: [String!]
+
+  """
+  Filter by text search inside "code", "label" or "tags"
+  """
+  textSearch: String
 }
 
 """
-[ADMIN] Admin related content mutations, only authenticated users with the role "ADMIN" can access
+Admin related content mutations, only authenticated users with the role "ADMIN" can access
 """
 type AdminContentMutations {
   """
-  [ADMIN] Create a new content entity
+  Create a new content entity
   """
   createContent(data: CreateContent!): Content!
 
   """
-  [ADMIN] Update an existent content entity
+  Update an existent content entity
   """
   updateContent(data: UpdateContent!): Content!
 }
@@ -336,7 +341,7 @@ Admin Content-Related Queries
 """
 type AdminContentQueries {
   """
-  [ADMIN] Get all the content currently in the system
+  Get all the content currently in the system
 
   Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
   """
@@ -351,32 +356,32 @@ Admin Domain-Related Queries
 """
 type AdminDomainMutations {
   """
-  [ADMIN] Create a new domain entity
+  Create a new domain entity
   """
   createDomain(input: CreateDomain!): Domain!
 
   """
-  [ADMIN] Create a new KC entity
+  Create a new KC entity
   """
   createKC(data: CreateKCInput!): KC!
 
   """
-  [ADMIN] Create a new topic entity
+  Create a new topic entity
   """
   createTopic(input: CreateTopic!): Topic!
 
   """
-  [ADMIN] Update an existent domain entity
+  Update an existent domain entity
   """
   updateDomain(input: UpdateDomain!): Domain!
 
   """
-  [ADMIN] Update an existent KC entity
+  Update an existent KC entity
   """
   updateKC(data: UpdateKCInput!): KC!
 
   """
-  [ADMIN] Update an existent topic entity
+  Update an existent topic entity
   """
   updateTopic(input: UpdateTopic!): Topic!
 }
@@ -386,7 +391,7 @@ Admin Domain-Related Queries
 """
 type AdminDomainQueries {
   """
-  [ADMIN] Get all the domains currently in the system
+  Get all the domains currently in the system
 
   Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
   """
@@ -396,7 +401,7 @@ type AdminDomainQueries {
   ): DomainsConnection!
 
   """
-  [ADMIN] Get all the KCs currently in the system
+  Get all the KCs currently in the system
 
   Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
   """
@@ -406,7 +411,7 @@ type AdminDomainQueries {
   ): KCsConnection!
 
   """
-  [ADMIN] Get all the topics currently in the system
+  Get all the topics currently in the system
 
   Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
   """
@@ -426,6 +431,11 @@ input AdminDomainsFilter {
   If the domain's project matches any of the specified projects, the domain is included
   """
   projects: [IntID!]
+
+  """
+  Filter by text search inside "code" or "label"
+  """
+  textSearch: String
 }
 
 """
@@ -459,6 +469,11 @@ input AdminKCsFilter {
   projects: [IntID!]
 
   """
+  Filter by text search inside "code" or "label"
+  """
+  textSearch: String
+
+  """
   Filter by the specified topics
 
   If any of the KC's topics matches any of the specified topics, the KC is included
@@ -471,12 +486,12 @@ Admin Project-Related Mutations
 """
 type AdminProjectsMutations {
   """
-  [ADMIN] Create a new project entity
+  Create a new project entity
   """
   createProject(data: CreateProject!): Project!
 
   """
-  [ADMIN] Update an existent project entity
+  Update an existent project entity
   """
   updateProject(data: UpdateProject!): Project!
 }
@@ -486,7 +501,7 @@ Admin Project-Related Queries
 """
 type AdminProjectsQueries {
   """
-  [ADMIN] Get all the projects currently in the system
+  Get all the projects currently in the system
   """
   allProjects(pagination: CursorConnectionArgs!): ProjectsConnection!
 }
@@ -496,21 +511,21 @@ Admin State-Related Queries
 """
 type AdminStateQueries {
   """
-  [ADMIN] Get all the model states creators currently in the system
+  Get all the model states creators currently in the system
   """
   allModelStateCreators(
     pagination: CursorConnectionArgs!
   ): ModelStateCreatorConnection!
 
   """
-  [ADMIN] Get all the model statestypes currently in the system
+  Get all the model statestypes currently in the system
   """
   allModelStateTypes(
     pagination: CursorConnectionArgs!
   ): ModelStateTypeConnection!
 
   """
-  [ADMIN] Get all the model states currently in the system
+  Get all the model states currently in the system
 
   Pagination parameters are mandatory, but filters and orderBy are optional, and therefore the search can be customized.
   """
@@ -527,6 +542,11 @@ input AdminTopicsFilter {
   If the topic's project matches any of the specified projects, the topic is included
   """
   projects: [IntID!]
+
+  """
+  Filter by text search inside "code", "label" or "tags"
+  """
+  textSearch: String
 }
 
 """
@@ -534,7 +554,7 @@ Admin User-Related Queries
 """
 type AdminUserMutations {
   """
-  [ADMIN] Create a new group entity
+  Create a new group entity
   """
   createGroup(data: CreateGroupInput!): Group!
 
@@ -544,17 +564,17 @@ type AdminUserMutations {
   setProjectsToUsers(projectIds: [IntID!]!, userIds: [IntID!]!): [User!]!
 
   """
-  [ADMIN] Set the users (by email) associated with the groups
+  Set the users (by email) associated with the groups
   """
   setUserGroups(groupIds: [IntID!]!, usersEmails: [EmailAddress!]!): [Group!]!
 
   """
-  [ADMIN] Update an existent group entity
+  Update an existent group entity
   """
   updateGroup(data: UpdateGroupInput!): Group!
 
   """
-  [ADMIN] Update an existent user entity
+  Update an existent user entity
   """
   updateUser(data: UpdateUserInput!): User!
 
@@ -572,7 +592,7 @@ Admin User-Related Queries
 """
 type AdminUserQueries {
   """
-  [ADMIN] Get all the groups currently in the system
+  Get all the groups currently in the system
 
   Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
   """
@@ -582,7 +602,7 @@ type AdminUserQueries {
   ): GroupsConnection!
 
   """
-  [ADMIN] Get all the users currently in the system
+  Get all the users currently in the system
 
   Pagination parameters are mandatory, but filters is optional, and therefore the search can be customized.
   """
@@ -602,6 +622,11 @@ input AdminUsersFilter {
   If any of the user's tags matches any of the specified tags, the user is included
   """
   tags: [String!]
+
+  """
+  Filter by text search inside "email", "name" or "tags"
+  """
+  textSearch: String
 }
 
 """
@@ -1418,22 +1443,22 @@ type Mutation {
   action(data: ActionInput!): Void
 
   """
-  [ADMIN] Admin related content mutations, only authenticated users with the role "ADMIN" can access
+  Admin related content mutations, only authenticated users with the role "ADMIN" can access
   """
   adminContent: AdminContentMutations!
 
   """
-  [ADMIN] Admin related domain mutations, only authenticated users with the role "ADMIN" can access
+  Admin related domain mutations, only authenticated users with the role "ADMIN" can access
   """
   adminDomain: AdminDomainMutations!
 
   """
-  [ADMIN] Admin related project mutations, only authenticated users with the role "ADMIN" can access
+  Admin related project mutations, only authenticated users with the role "ADMIN" can access
   """
   adminProjects: AdminProjectsMutations!
 
   """
-  [ADMIN] Admin related user mutations, only authenticated users with the role "ADMIN" can access
+  Admin related user mutations, only authenticated users with the role "ADMIN" can access
   """
   adminUsers: AdminUserMutations!
 
@@ -1674,32 +1699,32 @@ type ProjectsConnection implements Connection {
 
 type Query {
   """
-  [ADMIN] Admin related actions queries, only authenticated users with the role "ADMIN" can access
+  Admin related actions queries, only authenticated users with the role "ADMIN" can access
   """
   adminActions: AdminActionQueries!
 
   """
-  [ADMIN] Admin related content queries, only authenticated users with the role "ADMIN" can access
+  Admin related content queries, only authenticated users with the role "ADMIN" can access
   """
   adminContent: AdminContentQueries!
 
   """
-  [ADMIN] Admin related domain queries, only authenticated users with the role "ADMIN" can access
+  Admin related domain queries, only authenticated users with the role "ADMIN" can access
   """
   adminDomain: AdminDomainQueries!
 
   """
-  [ADMIN] Project related administration queries
+  Project related administration queries
   """
   adminProjects: AdminProjectsQueries!
 
   """
-  [ADMIN] Admin related state queries, only authenticated users with the role "ADMIN" can access
+  Admin related state queries, only authenticated users with the role "ADMIN" can access
   """
   adminState: AdminStateQueries!
 
   """
-  [ADMIN] Admin related user queries, only authenticated users with the role "ADMIN" can access
+  Admin related user queries, only authenticated users with the role "ADMIN" can access
   """
   adminUsers: AdminUserQueries!
 
