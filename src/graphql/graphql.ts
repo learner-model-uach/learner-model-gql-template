@@ -238,7 +238,7 @@ export type AdminActionsOrderBy = {
   /**
    * Order the actions ascendingly or descendingly
    *
-   * Following the cursor pagination's nature, ordering by "id" tends to follow the action creation date, but it can't be guaranteed
+   * Following the cursor pagination's nature, ordering by "id" tends to follow the action creation date
    *
    * By default the actions are ordered descendingly, showing the newer actions first
    */
@@ -247,6 +247,12 @@ export type AdminActionsOrderBy = {
 
 /** Filter all content of admin query */
 export type AdminContentFilter = {
+  /**
+   * Filter by the specified KCs
+   *
+   * If any of the content's KCs matches any of the specified KCs, the content is included
+   */
+  kcs?: InputMaybe<Array<Scalars["IntID"]>>;
   /**
    * Filter by the specified projects
    *
@@ -1005,13 +1011,13 @@ export type ModelStateFilter = {
   /**
    * Filter by the specified creators
    *
-   * If states's creator matches any of the specified creators, the state is included
+   * If the states's creator matches any of the specified creators, the state is included
    */
   creators?: InputMaybe<Array<Scalars["String"]>>;
   /**
    * Filter by the specified types
    *
-   * If state's type matches any of the specified types, the state is included
+   * If the state's type matches any of the specified types, the state is included
    */
   type?: InputMaybe<Array<Scalars["String"]>>;
 };
@@ -1021,7 +1027,7 @@ export type ModelStateOrderBy = {
   /**
    * Order the model states ascendingly or descendingly
    *
-   * Following the cursor pagination's nature, ordering by "id" tends to follow the state creation date, but it can't be guaranteed
+   * Following the cursor pagination's nature, ordering by "id" which should follow the state creation date
    *
    * By default the states are ordered descendingly, showing the newer states first
    */
