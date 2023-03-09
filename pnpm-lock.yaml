@@ -9,7 +9,7 @@ specifiers:
   '@graphql-codegen/cli': ^2.4.0
   '@graphql-codegen/core': ^2.4.0
   '@graphql-codegen/schema-ast': ^2.4.1
-  '@graphql-typed-document-node/core': ^3.1.1
+  '@graphql-typed-document-node/core': ^3.1.2
   '@types/node': ^16.11.21
   '@types/react': ^17.0.38
   '@types/react-dom': ^17.0.11
@@ -39,7 +39,7 @@ dependencies:
   '@emotion/styled': 11.6.0_abckn3dnz5o6o4c376vp66x5ey
   '@graphql-codegen/cli': 2.4.0_as6kaixyws7f3gp4aqsni2njuu
   '@graphql-codegen/core': 2.4.0_graphql@16.2.0
-  '@graphql-typed-document-node/core': 3.1.1_graphql@16.2.0
+  '@graphql-typed-document-node/core': 3.1.2_graphql@16.2.0
   framer-motion: 6.2.1_sfoxds7t5ydpegc3knd667wn6m
   graphql: 16.2.0
   next: 12.0.8_sfoxds7t5ydpegc3knd667wn6m
@@ -47,7 +47,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.3.1_react@17.0.2
   react-query: 3.34.12_sfoxds7t5ydpegc3knd667wn6m
-  rq-gql: 0.4.3_2mp2wo6aldjtpsvljscdi5ehju
+  rq-gql: 0.4.3_flbeaaewzqfbe7hfapm3ochicy
   serialize-error: 9.0.0
   valtio: 1.2.9_react@17.0.2
 
@@ -2184,8 +2184,8 @@ packages:
       value-or-promise: 1.0.11
     dev: false
 
-  /@graphql-typed-document-node/core/3.1.1_graphql@16.2.0:
-    resolution: {integrity: sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==}
+  /@graphql-typed-document-node/core/3.1.2_graphql@16.2.0:
+    resolution: {integrity: sha512-9anpBMM9mEgZN4wr2v8wHJI2/u5TnnggewRN6OlvXTTnuVyoY19X6rOv9XTqKRw6dcGKwZsBi8n0kDE2I5i4VA==}
     peerDependencies:
       graphql: '*'
     dependencies:
@@ -6110,7 +6110,7 @@ packages:
     dependencies:
       glob: 7.2.0
 
-  /rq-gql/0.4.3_2mp2wo6aldjtpsvljscdi5ehju:
+  /rq-gql/0.4.3_flbeaaewzqfbe7hfapm3ochicy:
     resolution: {integrity: sha512-ZiuwOpx8+yLmpQkWWMogMiglwkVp4z2WefDVa5/kBp7MPncuCf4FhR0SdS3LW5fEtRHe1RsDY4U6EO/rMwIUrQ==}
     peerDependencies:
       '@graphql-typed-document-node/core': ^3.1.1
@@ -6126,7 +6126,7 @@ packages:
       '@graphql-codegen/typescript-operations': 2.2.2_graphql@16.2.0
       '@graphql-codegen/visitor-plugin-common': 2.5.2_graphql@16.2.0
       '@graphql-tools/utils': 8.6.1_graphql@16.2.0
-      '@graphql-typed-document-node/core': 3.1.1_graphql@16.2.0
+      '@graphql-typed-document-node/core': 3.1.2_graphql@16.2.0
       commander: 8.3.0
       graphql: 16.2.0
       react-query: 3.34.12_sfoxds7t5ydpegc3knd667wn6m
