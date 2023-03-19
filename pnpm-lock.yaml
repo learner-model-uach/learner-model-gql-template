@@ -24,7 +24,7 @@ specifiers:
   react: ^17.0.2
   react-dom: ^17.0.2
   react-icons: ^4.8.0
-  react-query: ^3.34.12
+  react-query: ^3.39.3
   rq-gql: ^0.4.3
   serialize-error: ^9.0.0
   typescript: ^4.5.5
@@ -46,8 +46,8 @@ dependencies:
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-icons: 4.8.0_react@17.0.2
-  react-query: 3.34.12_sfoxds7t5ydpegc3knd667wn6m
-  rq-gql: 0.4.3_oq2douywsu7ujdbkbdnf7hokpu
+  react-query: 3.39.3_sfoxds7t5ydpegc3knd667wn6m
+  rq-gql: 0.4.3_pampg5c7zy4nn7ctfwvok7hbb4
   serialize-error: 9.0.0
   valtio: 1.2.9_react@17.0.2
 
@@ -5276,7 +5276,7 @@ packages:
     dev: false
 
   /nano-time/1.0.0:
-    resolution: {integrity: sha1-sFVPaa2J4i0JB/ehKwmTpdlhN+8=}
+    resolution: {integrity: sha512-flnngywOoQ0lLQOTRNexn2gGSNuM9bKj9RZAWSzhQ+UJYaAFG9bac4DW9VHjUAzrOaIcajHybCTHe/bkvozQqA==}
     dependencies:
       big-integer: 1.6.51
     dev: false
@@ -5839,10 +5839,10 @@ packages:
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-  /react-query/3.34.12_sfoxds7t5ydpegc3knd667wn6m:
-    resolution: {integrity: sha512-flDdudQVH4CqE+kNYYYyo4g2Yjek3H/36G3b9bK5oe26jD5gFnx+PPwnq0gayq5z2dcSfr2z4+drvuyeZ3A5QQ==}
+  /react-query/3.39.3_sfoxds7t5ydpegc3knd667wn6m:
+    resolution: {integrity: sha512-nLfLz7GiohKTJDuT4us4X3h/8unOh+00MLb2yJoGTPjxKs2bc1iDhkNx2bd5MKklXnOD3NrVZ+J2UXujA5In4g==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: '*'
       react-native: '*'
     peerDependenciesMeta:
@@ -6039,7 +6039,7 @@ packages:
     dev: false
 
   /remove-accents/0.4.2:
-    resolution: {integrity: sha1-CkPTqq4egNuRngeuJUsoXZ4ce7U=}
+    resolution: {integrity: sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==}
     dev: false
 
   /remove-trailing-separator/1.1.0:
@@ -6119,7 +6119,7 @@ packages:
     dependencies:
       glob: 7.2.0
 
-  /rq-gql/0.4.3_oq2douywsu7ujdbkbdnf7hokpu:
+  /rq-gql/0.4.3_pampg5c7zy4nn7ctfwvok7hbb4:
     resolution: {integrity: sha512-ZiuwOpx8+yLmpQkWWMogMiglwkVp4z2WefDVa5/kBp7MPncuCf4FhR0SdS3LW5fEtRHe1RsDY4U6EO/rMwIUrQ==}
     peerDependencies:
       '@graphql-typed-document-node/core': ^3.1.1
@@ -6138,7 +6138,7 @@ packages:
       '@graphql-typed-document-node/core': 3.1.2_graphql@16.6.0
       commander: 8.3.0
       graphql: 16.6.0
-      react-query: 3.34.12_sfoxds7t5ydpegc3knd667wn6m
+      react-query: 3.39.3_sfoxds7t5ydpegc3knd667wn6m
       valtio: 1.2.9_react@17.0.2
     transitivePeerDependencies:
       - encoding
