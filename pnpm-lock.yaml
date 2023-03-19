@@ -26,7 +26,7 @@ specifiers:
   react-icons: ^4.8.0
   react-query: ^3.39.3
   rq-gql: ^0.4.3
-  serialize-error: ^9.1.1
+  serialize-error: ^11.0.0
   typescript: ^4.9.5
   valtio: 1.2.9
   wait-on: ^6.0.1
@@ -48,7 +48,7 @@ dependencies:
   react-icons: 4.8.0_react@17.0.2
   react-query: 3.39.3_sfoxds7t5ydpegc3knd667wn6m
   rq-gql: 0.4.3_pampg5c7zy4nn7ctfwvok7hbb4
-  serialize-error: 9.1.1
+  serialize-error: 11.0.0
   valtio: 1.2.9_react@17.0.2
 
 devDependencies:
@@ -5992,9 +5992,9 @@ packages:
       tslib: 2.5.0
       upper-case-first: 2.0.2
 
-  /serialize-error/9.1.1:
-    resolution: {integrity: sha512-6uZQLGyUkNA4N+Zii9fYukmNu9PEA1F5rqcwXzN/3LtBjwl2dFBbVZ1Zyn08/CGkB4H440PIemdOQBt1Wvjbrg==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+  /serialize-error/11.0.0:
+    resolution: {integrity: sha512-YKrURWDqcT3VGX/s/pCwaWtpfJEEaEw5Y4gAnQDku92b/HjVj4r4UhA5QrMVMFotymK2wIWs5xthny5SMFu7Vw==}
+    engines: {node: '>=14.16'}
     dependencies:
       type-fest: 2.19.0
     dev: false
