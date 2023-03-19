@@ -26,7 +26,7 @@ specifiers:
   react-icons: ^4.8.0
   react-query: ^3.39.3
   rq-gql: ^0.4.3
-  serialize-error: ^9.0.0
+  serialize-error: ^9.1.1
   typescript: ^4.5.5
   valtio: 1.2.9
   wait-on: ^6.0.1
@@ -48,7 +48,7 @@ dependencies:
   react-icons: 4.8.0_react@17.0.2
   react-query: 3.39.3_sfoxds7t5ydpegc3knd667wn6m
   rq-gql: 0.4.3_pampg5c7zy4nn7ctfwvok7hbb4
-  serialize-error: 9.0.0
+  serialize-error: 9.1.1
   valtio: 1.2.9_react@17.0.2
 
 devDependencies:
@@ -6211,11 +6211,11 @@ packages:
       tslib: 2.3.1
       upper-case-first: 2.0.2
 
-  /serialize-error/9.0.0:
-    resolution: {integrity: sha512-g2bg8Axwii7KlEkLAKXbLuGXS8rkvEdOY7VAlh8OpvG7lZH6Fcj3cyWVPU7HhiJMIe/1udV+Te3ON0Ch3TFlWQ==}
+  /serialize-error/9.1.1:
+    resolution: {integrity: sha512-6uZQLGyUkNA4N+Zii9fYukmNu9PEA1F5rqcwXzN/3LtBjwl2dFBbVZ1Zyn08/CGkB4H440PIemdOQBt1Wvjbrg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
-      type-fest: 2.10.0
+      type-fest: 2.19.0
     dev: false
 
   /set-blocking/2.0.0:
@@ -6695,15 +6695,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /type-fest/2.10.0:
-    resolution: {integrity: sha512-u2yreDMllFI3VCpWt0rKrGs/E2LO0YHBwiiOIj+ilQh9+ALMaa4lNBSdoDvuHN3cbKcYk9L1BXP49x9RT+o/SA==}
-    engines: {node: '>=12.20'}
-    dev: false
-
   /type-fest/2.19.0:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
-    dev: true
 
   /typescript/4.5.5:
     resolution: {integrity: sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==}
