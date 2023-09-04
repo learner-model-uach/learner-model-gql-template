@@ -45,7 +45,7 @@
     "wait-on": "^7.0.1"
   },
   "engines": {
-    "pnpm": ">=7.31.0"
+    "pnpm": ">=8.7.1"
   },
   "pnpm": {
     "peerDependencyRules": {
