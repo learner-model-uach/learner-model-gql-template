@@ -54,8 +54,8 @@ dependencies:
     specifier: ^0.4.3
     version: 0.4.3(@graphql-typed-document-node/core@3.2.0)(graphql@16.6.0)(react-query@3.39.3)(valtio@1.2.9)
   serialize-error:
-    specifier: ^11.0.0
-    version: 11.0.0
+    specifier: ^11.0.2
+    version: 11.0.2
   valtio:
     specifier: 1.2.9
     version: 1.2.9(react@17.0.2)
@@ -6144,8 +6144,8 @@ packages:
       tslib: 2.5.0
       upper-case-first: 2.0.2
 
-  /serialize-error@11.0.0:
-    resolution: {integrity: sha512-YKrURWDqcT3VGX/s/pCwaWtpfJEEaEw5Y4gAnQDku92b/HjVj4r4UhA5QrMVMFotymK2wIWs5xthny5SMFu7Vw==}
+  /serialize-error@11.0.2:
+    resolution: {integrity: sha512-o43i0jLcA0LXA5Uu+gI1Vj+lF66KR9IAcy0ThbGq1bAMPN+k5IgSHsulfnqf/ddKAz6dWf+k8PD5hAr9oCSHEQ==}
     engines: {node: '>=14.16'}
     dependencies:
       type-fest: 2.19.0

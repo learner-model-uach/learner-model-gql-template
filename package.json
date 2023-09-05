@@ -28,7 +28,7 @@
     "react-icons": "^4.8.0",
     "react-query": "^3.39.3",
     "rq-gql": "^0.4.3",
-    "serialize-error": "^11.0.0",
+    "serialize-error": "^11.0.2",
     "valtio": "1.2.9"
   },
   "devDependencies": {
