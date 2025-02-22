@@ -48,8 +48,8 @@ importers:
         specifier: ^17.0.2
         version: 17.0.2(react@17.0.2)
       react-icons:
-        specifier: ^5.4.0
-        version: 5.4.0(react@17.0.2)
+        specifier: ^5.5.0
+        version: 5.5.0(react@17.0.2)
       react-query:
         specifier: ^3.39.3
         version: 3.39.3(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
@@ -3129,8 +3129,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0
 
-  react-icons@5.4.0:
-    resolution: {integrity: sha512-7eltJxgVt7X64oHh6wSWNwwbKTCtMfK35hcjvJS0yxEAhPM8oUKdS3+kqaW1vicIltw+kR2unHaa12S9pPALoQ==}
+  react-icons@5.5.0:
+    resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
     peerDependencies:
       react: '*'
 
@@ -7711,7 +7711,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  react-icons@5.4.0(react@17.0.2):
+  react-icons@5.5.0(react@17.0.2):
     dependencies:
       react: 17.0.2
 
