@@ -36,7 +36,7 @@
     "@types/node": "^22.19.15",
     "@types/react": "^17.0.91",
     "@types/react-dom": "^17.0.26",
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.1",
     "eslint": "9.21.0",
     "eslint-config-next": "12.3.7",
     "open-cli": "^8.0.0",
