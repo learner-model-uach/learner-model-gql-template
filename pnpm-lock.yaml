@@ -25,7 +25,7 @@ importers:
         version: 11.14.1(@emotion/react@11.14.0(@types/react@17.0.91)(react@17.0.2))(@types/react@17.0.91)(react@17.0.2)
       '@graphql-codegen/cli':
         specifier: ^6.2.1
-        version: 6.2.1(@parcel/watcher@2.1.0)(@types/node@24.12.2)(graphql@16.13.2)(typescript@4.9.5)
+        version: 6.2.1(@parcel/watcher@2.1.0)(@types/node@24.12.2)(graphql@16.13.2)(typescript@6.0.2)
       '@graphql-codegen/core':
         specifier: ^5.0.1
         version: 5.0.1(graphql@16.13.2)
@@ -83,7 +83,7 @@ importers:
         version: 10.2.0(jiti@2.4.2)
       eslint-config-next:
         specifier: 12.3.7
-        version: 12.3.7(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5)
+        version: 12.3.7(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2)
       open-cli:
         specifier: ^9.0.0
         version: 9.0.0
@@ -91,8 +91,8 @@ importers:
         specifier: ^3.8.1
         version: 3.8.1
       typescript:
-        specifier: ^4.9.5
-        version: 4.9.5
+        specifier: ^6.0.2
+        version: 6.0.2
       wait-on:
         specifier: ^9.0.4
         version: 9.0.4
@@ -3696,9 +3696,9 @@ packages:
     resolution: {integrity: sha512-3KS2b+kL7fsuk/eJZ7EQdnEmQoaho/r6KUef7hxvltNA5DR8NAUM+8wJMbJyZ4G9/7i3v5zPBIMN5aybAh2/Jg==}
     engines: {node: '>= 0.4'}
 
-  typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   ua-parser-js@0.7.31:
@@ -5054,7 +5054,7 @@ snapshots:
       graphql: 16.13.2
       tslib: 2.6.3
 
-  '@graphql-codegen/cli@6.2.1(@parcel/watcher@2.1.0)(@types/node@24.12.2)(graphql@16.13.2)(typescript@4.9.5)':
+  '@graphql-codegen/cli@6.2.1(@parcel/watcher@2.1.0)(@types/node@24.12.2)(graphql@16.13.2)(typescript@6.0.2)':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/template': 7.25.9
@@ -5075,11 +5075,11 @@ snapshots:
       '@inquirer/prompts': 7.10.1(@types/node@24.12.2)
       '@whatwg-node/fetch': 0.10.3
       chalk: 4.1.2
-      cosmiconfig: 9.0.1(typescript@4.9.5)
+      cosmiconfig: 9.0.1(typescript@6.0.2)
       debounce: 2.2.0
       detect-indent: 6.1.0
       graphql: 16.13.2
-      graphql-config: 5.1.6(@types/node@24.12.2)(graphql@16.13.2)(typescript@4.9.5)
+      graphql-config: 5.1.6(@types/node@24.12.2)(graphql@16.13.2)(typescript@6.0.2)
       is-glob: 4.0.3
       jiti: 2.4.2
       json-to-pretty-yaml: 1.2.2
@@ -5945,15 +5945,15 @@ snapshots:
     dependencies:
       '@types/node': 24.12.2
 
-  '@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5)':
+  '@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2)':
     dependencies:
       '@typescript-eslint/scope-manager': 5.62.0
       '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
+      '@typescript-eslint/typescript-estree': 5.62.0(typescript@6.0.2)
       debug: 4.4.3
       eslint: 10.2.0(jiti@2.4.2)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
@@ -5964,7 +5964,7 @@ snapshots:
 
   '@typescript-eslint/types@5.62.0': {}
 
-  '@typescript-eslint/typescript-estree@5.62.0(typescript@4.9.5)':
+  '@typescript-eslint/typescript-estree@5.62.0(typescript@6.0.2)':
     dependencies:
       '@typescript-eslint/types': 5.62.0
       '@typescript-eslint/visitor-keys': 5.62.0
@@ -5972,9 +5972,9 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       semver: 7.6.3
-      tsutils: 3.21.0(typescript@4.9.5)
+      tsutils: 3.21.0(typescript@6.0.2)
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
 
@@ -6409,23 +6409,23 @@ snapshots:
       path-type: 4.0.0
       yaml: 1.10.2
 
-  cosmiconfig@8.3.6(typescript@4.9.5):
+  cosmiconfig@8.3.6(typescript@6.0.2):
     dependencies:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 6.0.2
 
-  cosmiconfig@9.0.1(typescript@4.9.5):
+  cosmiconfig@9.0.1(typescript@6.0.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 6.0.2
 
   cross-fetch@3.1.5:
     dependencies:
@@ -6667,20 +6667,20 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-next@12.3.7(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5):
+  eslint-config-next@12.3.7(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2):
     dependencies:
       '@next/eslint-plugin-next': 12.3.7
       '@rushstack/eslint-patch': 1.10.5
-      '@typescript-eslint/parser': 5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2)
       eslint: 10.2.0(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 2.7.1(eslint-plugin-import@2.31.0)(eslint@10.2.0(jiti@2.4.2))
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5))(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2))
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2))(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2))
       eslint-plugin-jsx-a11y: 6.5.1(eslint@10.2.0(jiti@2.4.2))
       eslint-plugin-react: 7.37.4(eslint@10.2.0(jiti@2.4.2))
       eslint-plugin-react-hooks: 4.6.2(eslint@10.2.0(jiti@2.4.2))
     optionalDependencies:
-      typescript: 4.9.5
+      typescript: 6.0.2
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
@@ -6697,7 +6697,7 @@ snapshots:
     dependencies:
       debug: 4.4.3
       eslint: 10.2.0(jiti@2.4.2)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5))(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2))
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2))(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2))
       glob: 7.2.0
       is-glob: 4.0.3
       resolve: 1.22.10
@@ -6705,18 +6705,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2)):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
-      '@typescript-eslint/parser': 5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2)
       eslint: 10.2.0(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 2.7.1(eslint-plugin-import@2.31.0)(eslint@10.2.0(jiti@2.4.2))
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5))(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2)):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2))(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2)):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -6727,7 +6727,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 10.2.0(jiti@2.4.2)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2))
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@2.7.1)(eslint@10.2.0(jiti@2.4.2))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3
@@ -6739,7 +6739,7 @@ snapshots:
       string.prototype.trimend: 1.0.9
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@4.9.5)
+      '@typescript-eslint/parser': 5.62.0(eslint@10.2.0(jiti@2.4.2))(typescript@6.0.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -7068,7 +7068,7 @@ snapshots:
 
   gopd@1.2.0: {}
 
-  graphql-config@5.1.6(@types/node@24.12.2)(graphql@16.13.2)(typescript@4.9.5):
+  graphql-config@5.1.6(@types/node@24.12.2)(graphql@16.13.2)(typescript@6.0.2):
     dependencies:
       '@graphql-tools/graphql-file-loader': 8.1.12(graphql@16.13.2)
       '@graphql-tools/json-file-loader': 8.0.26(graphql@16.13.2)
@@ -7076,7 +7076,7 @@ snapshots:
       '@graphql-tools/merge': 9.1.7(graphql@16.13.2)
       '@graphql-tools/url-loader': 9.0.6(@types/node@24.12.2)(graphql@16.13.2)
       '@graphql-tools/utils': 11.0.0(graphql@16.13.2)
-      cosmiconfig: 8.3.6(typescript@4.9.5)
+      cosmiconfig: 8.3.6(typescript@6.0.2)
       graphql: 16.13.2
       jiti: 2.4.2
       minimatch: 10.2.4
@@ -8278,10 +8278,10 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsutils@3.21.0(typescript@4.9.5):
+  tsutils@3.21.0(typescript@6.0.2):
     dependencies:
       tslib: 1.14.1
-      typescript: 4.9.5
+      typescript: 6.0.2
 
   type-check@0.4.0:
     dependencies:
@@ -8328,7 +8328,7 @@ snapshots:
       possible-typed-array-names: 1.0.0
       reflect.getprototypeof: 1.0.10
 
-  typescript@4.9.5: {}
+  typescript@6.0.2: {}
 
   ua-parser-js@0.7.31: {}
 
