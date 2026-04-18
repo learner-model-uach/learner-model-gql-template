@@ -20,7 +20,7 @@
     "@graphql-codegen/cli": "^6.3.1",
     "@graphql-codegen/core": "^5.0.2",
     "@graphql-typed-document-node/core": "^3.2.0",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "^12.38.0",
     "graphql": "^16.13.2",
     "next": "^12.3.7",
     "react": "^17.0.2",
